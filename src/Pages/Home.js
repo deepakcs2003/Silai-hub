@@ -1,0 +1,145 @@
+import React, { useContext, useState } from 'react';
+import HeroSection from '../Components/HeroSection';
+import Services from '../Components/ServiceCard';
+import WhyChooseUs from '../Components/WhyChooseUs';
+import FeaturedDesigns from '../Components/FeaturedDesigns';
+import Testimonials from '../Components/StarRating';
+import { AppContext } from '../App';
+import FeedbackCard from '../Components/FeedbackComponents/FeedbackCard';
+import { useNavigate } from 'react-router-dom';
+import { Smile } from "lucide-react";
+
+const Home = () => {
+  const { allFeedback } = useContext(AppContext);
+  const [visibleCount, setVisibleCount] = useState(12);
+  const navigate = useNavigate();
+
+  const handleViewMore = () => {
+    setVisibleCount((prev) => prev + 12);
+  };
+
+  // Sort feedback by rating descending
+  const sortedFeedback = [...(allFeedback || [])].sort((a, b) => b.rating - a.rating);
+  const visibleFeedback = sortedFeedback.slice(0, visibleCount);
+
+  return (
+    <div
+      className="min-h-screen"
+      style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)'
+      }}
+    >
+      {/* Simple Hero Section */}
+      <section className="px-2 py-8 md:py-16">
+        <div className="mx-auto">
+
+          {/* Hero Header */}
+          <div className="text-center mb-8 md:mb-12">
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              Premium Design Collection
+            </h1>
+            <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto">
+              Discover amazing designs crafted with passion and precision
+            </p>
+          </div>
+
+          {/* Featured Products */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl md:text-2xl font-bold text-white">Featured Designs</h2>
+            </div>
+            <FeaturedDesigns />
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href="/gallery"
+              className="w-full sm:w-auto bg-white text-purple-600 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center"
+            >
+              🎨 View All Product
+            </a>
+            <button
+              onClick={() => navigate('/contact')}
+              className="w-full sm:w-auto bg-purple-600/20 backdrop-blur-sm text-white font-semibold py-4 px-8 rounded-xl border border-white/30 hover:bg-white/20 transition-all duration-300 text-center"
+            >
+              💬 Get Custom Design
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Feedback Section */}
+      {visibleFeedback.length > 0 && (
+        <section className="px-4 py-16 bg-white/10 backdrop-blur-sm">
+          <div className="max-w-6xl mx-auto">
+
+            {/* Section Header */}
+            <div className="text-center mb-12">
+              <a
+                href="/feedback"
+                className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 mb-8"
+              >
+                <Smile className="w-5 h-5" />
+                Give Feedback
+              </a>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+                What Our Customers Say
+              </h2>
+              <div className="w-24 h-1 bg-white mx-auto rounded-full mb-4"></div>
+              <p className="text-white/80 text-lg max-w-2xl mx-auto">
+                Real experiences from our valued customers
+              </p>
+            </div>
+
+            {/* Feedback Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-6">
+              {visibleFeedback.map((feedback, index) => (
+                <div
+                  key={feedback._id}
+                  className="transform hover:scale-105 transition-transform duration-300"
+                >
+                  <FeedbackCard feedback={feedback} isOwner={false} />
+                </div>
+              ))}
+            </div>
+
+            {/* Load More Button */}
+            {visibleCount < sortedFeedback.length && (
+              <div className="text-center mt-8">
+                <button
+                  onClick={handleViewMore}
+                  className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300"
+                >
+                  ⬇️ View More
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Other Sections */}
+      <section className="space-y-12 md:space-y-16 py-8">
+
+        {/* Hero Section Component */}
+        <div className="mx-4 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden">
+          <HeroSection />
+        </div>
+
+        {/* Why Choose Us Component */}
+        <div className="mx-4 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden">
+          <WhyChooseUs />
+        </div>
+
+        {/* Services Component */}
+        <div className="mx-4 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden">
+          <Services />
+        </div>
+
+      </section>
+    </div>
+  );
+};
+
+export default Home;
