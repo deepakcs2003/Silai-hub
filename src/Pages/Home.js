@@ -3,7 +3,6 @@ import HeroSection from '../Components/HeroSection';
 import Services from '../Components/ServiceCard';
 import WhyChooseUs from '../Components/WhyChooseUs';
 import FeaturedDesigns from '../Components/FeaturedDesigns';
-import Testimonials from '../Components/StarRating';
 import { AppContext } from '../App';
 import FeedbackCard from '../Components/FeedbackComponents/FeedbackCard';
 import { useNavigate } from 'react-router-dom';
@@ -26,33 +25,29 @@ const Home = () => {
     <div
       className="min-h-screen"
       style={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)'
+        background: 'linear-gradient(135deg, #d6e6ff 0%, #d7f9f8 20%, #ffffea 40%, #fff0d4 60%, #fbe0e0 80%, #e5d4ef 100%)'
       }}
     >
       {/* Simple Hero Section */}
-      <section className="px-2 py-8 md:py-16">
+      <section className="py-2">
         <div className="mx-auto">
-
           {/* Hero Header */}
-          <div className="text-center mb-8 md:mb-12">
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          <div className="text-center mb-4 md:mb-4">
+            <h1 className="text-3xl md:text-5xl font-bold text-black mb-4">
               Premium Design Collection
             </h1>
-            <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto">
+            <p className="text-black text-lg md:text-xl max-w-2xl mx-auto">
               Discover amazing designs crafted with passion and precision
             </p>
           </div>
 
           {/* Featured Products */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl md:text-2xl font-bold text-white">Featured Designs</h2>
-            </div>
+          <div className="">
             <FeaturedDesigns />
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 px-4 justify-center items-center">
             <a
               href="/gallery"
               className="w-full sm:w-auto bg-white text-purple-600 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center"
@@ -61,39 +56,25 @@ const Home = () => {
             </a>
             <button
               onClick={() => navigate('/contact')}
-              className="w-full sm:w-auto bg-purple-600/20 backdrop-blur-sm text-white font-semibold py-4 px-8 rounded-xl border border-white/30 hover:bg-white/20 transition-all duration-300 text-center"
+              className="w-full sm:w-auto bg-white text-purple-600 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center"
             >
               💬 Get Custom Design
             </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Customer Feedback Section */}
-      {visibleFeedback.length > 0 && (
-        <section className="px-4 py-16 bg-white/10 backdrop-blur-sm">
-          <div className="max-w-6xl mx-auto">
-
-            {/* Section Header */}
-            <div className="text-center mb-12">
-              <a
+                 <a
                 href="/feedback"
-                className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 mb-8"
+              className="w-full sm:w-auto bg-white text-purple-600 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center"
               >
-                <Smile className="w-5 h-5" />
-                Give Feedback
+              😄  Give Feedback
               </a>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                What Our Customers Say
-              </h2>
-              <div className="w-24 h-1 bg-white mx-auto rounded-full mb-4"></div>
-              <p className="text-white/80 text-lg max-w-2xl mx-auto">
-                Real experiences from our valued customers
-              </p>
-            </div>
-
-            {/* Feedback Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-6">
+          </div>
+          
+        </div>
+        
+      </section>
+      
+          {/* Feedback Grid */}
+            <div className="grid grid-cols-2 mx-3 md:mx-3 mt-6 md:mt-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-6">
+              
               {visibleFeedback.map((feedback, index) => (
                 <div
                   key={feedback._id}
@@ -103,6 +84,41 @@ const Home = () => {
                 </div>
               ))}
             </div>
+
+      {/* Other Sections */}
+      <section className="space-y-12 md:space-y-16 py-8">
+        {/* Hero Section Component */}
+        <div className=" overflow-hidden">
+          <HeroSection />
+        </div>
+
+        {/* Why Choose Us Component */}
+        <div className="mx-4 rounded-2xl shadow-xl overflow-hidden">
+          <WhyChooseUs />
+        </div>
+
+        {/* Services Component */}
+        <div className="mx-4 rounded-2xl shadow-xl overflow-hidden">
+          <Services />
+        </div>
+      </section>
+
+      {/* Customer Feedback Section */}
+      {visibleFeedback.length > 0 && (
+        <section className="px-4 py-16">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+                What Our Customers Say
+              </h2>
+              <div className="w-24 h-1 bg-white mx-auto rounded-full mb-4"></div>
+              <p className="text-white/80 text-lg max-w-2xl mx-auto">
+                Real experiences from our valued customers
+              </p>
+            </div>
+
+        
 
             {/* Load More Button */}
             {visibleCount < sortedFeedback.length && (
@@ -118,26 +134,6 @@ const Home = () => {
           </div>
         </section>
       )}
-
-      {/* Other Sections */}
-      <section className="space-y-12 md:space-y-16 py-8">
-
-        {/* Hero Section Component */}
-        <div className="mx-4 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden">
-          <HeroSection />
-        </div>
-
-        {/* Why Choose Us Component */}
-        <div className="mx-4 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden">
-          <WhyChooseUs />
-        </div>
-
-        {/* Services Component */}
-        <div className="mx-4 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden">
-          <Services />
-        </div>
-
-      </section>
     </div>
   );
 };

@@ -18,7 +18,7 @@ const LoginPage = () => {
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
-
+    console.log("data",data)
     if (data.success) {
       localStorage.setItem('token', data.token);
       localStorage.setItem('name', data.user.name);
@@ -44,13 +44,14 @@ const LoginPage = () => {
       body: JSON.stringify({ token: credential }),
     });
     const data = await backendResponse.json();
-
+    console.log("data is here",data)
     if (data.success) {
+      localStorage.setItem("data",data)
       localStorage.setItem('token', data.token);
       localStorage.setItem('name', data.user.name);
       localStorage.setItem('email', data.user.email);
       localStorage.setItem('role', data.user.role);
-      localStorage.setItem('profilePicture', data.user.profilePicture);
+      localStorage.setItem('profilePicture', data.user.profile_picture);
       localStorage.setItem('userId',data.user._id);
 
       navigate('/');

@@ -51,7 +51,7 @@ const HeroSection = () => {
   }, [handleNextSlide]);
 
   return (
-    <div className="relative h-[250px] md:h-[700px] w-full overflow-hidden">
+    <div className="relative h-[260px] md:h-[700px] w-full overflow-hidden">
       {/* Background Image Carousel */}
       {heroContent.map((slide, index) => (
         <div 
