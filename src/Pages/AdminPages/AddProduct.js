@@ -16,6 +16,7 @@ import LehengaDetails from "../../Components/AdminComponent/LehengaDetails";
 import summaryApi from "../../Common";
 import uploadMedia from "../../Common/uploadMedia";
 import { useNavigate, useParams } from "react-router-dom";
+import ImageUploader from "../../Components/AdminComponent/ImageUploader";
 
 const ProductForm = () => {
     const { id, type } = useParams();
@@ -159,42 +160,42 @@ const ProductForm = () => {
         }));
     };
 
-    const handleMultiSelectChange = (e) => {
-        const { name, options } = e.target;
-        const selectedValues = Array.from(options)
-            .filter(option => option.selected)
-            .map(option => option.value);
+    // const handleMultiSelectChange = (e) => {
+    //     const { name, options } = e.target;
+    //     const selectedValues = Array.from(options)
+    //         .filter(option => option.selected)
+    //         .map(option => option.value);
 
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: selectedValues,
-        }));
-    };
-    const [loading, setLoading] = useState(false);
+    //     setFormData((prevData) => ({
+    //         ...prevData,
+    //         [name]: selectedValues,
+    //     }));
+    // };
+    // const [loading, setLoading] = useState(false);
 
-    const handleImageUpload = async (e) => {
-        const files = Array.from(e.target.files);
-        setLoading(true); // Start loading
+    // const handleImageUpload = async (e) => {
+    //     const files = Array.from(e.target.files);
+    //     setLoading(true); // Start loading
 
-        const uploadedImages = await Promise.all(
-            files.map(async (file) => {
-                try {
-                    const result = await uploadMedia(file);
-                    return { url: result.url };
-                } catch (error) {
-                    console.error("Error uploading image:", error);
-                    return null;
-                }
-            })
-        );
+    //     const uploadedImages = await Promise.all(
+    //         files.map(async (file) => {
+    //             try {
+    //                 const result = await uploadMedia(file);
+    //                 return { url: result.url };
+    //             } catch (error) {
+    //                 console.error("Error uploading image:", error);
+    //                 return null;
+    //             }
+    //         })
+    //     );
 
-        setFormData((prevData) => ({
-            ...prevData,
-            images: [...prevData.images, ...uploadedImages.filter(Boolean)],
-        }));
+    //     setFormData((prevData) => ({
+    //         ...prevData,
+    //         images: [...prevData.images, ...uploadedImages.filter(Boolean)],
+    //     }));
 
-        setLoading(false); // Stop loading
-    };
+    //     setLoading(false); // Stop loading
+    // };
 
 
     const handleSubmit = async (e) => {
@@ -488,19 +489,7 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Images</label>
-                <input
-                    type="file"
-                    name="images"
-                    multiple
-                    onChange={handleImageUpload}
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                />
-                {loading && (
-                    <div className="flex justify-center items-center mt-4">
-                       loading..... wait to image upload 
-                    </div>
-                )}
+                <ImageUploader formData={formData} setFormData={setFormData} />
 
             </div>
 
