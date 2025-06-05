@@ -1,6 +1,6 @@
 const local="http://localhost:5000"
 const production="http://silaihub-env.eba-t2cmsekn.ap-south-1.elasticbeanstalk.com"
-const render="https://silai-hub.onrender.com/"
+const render="https://silai-hub.onrender.com"
 const backendDomain=render;
 const summaryApi={
     signUp:{
