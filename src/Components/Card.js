@@ -40,7 +40,7 @@ const Card = ({ products }) => {
     const tailorPrice = calculateDiscountedPrice(product.tailorPrice, product.discount);
     const minPrice = Math.min(readyPrice, tailorPrice);
     const maxPrice = Math.max(readyPrice, tailorPrice);
-    
+
     if (minPrice === maxPrice) {
       return `₹${minPrice.toFixed(0)}`;
     }
@@ -90,13 +90,7 @@ const Card = ({ products }) => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
 
-                {/* Price Badge - Top Left */}
-                <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-sm px-2 py-1 rounded-full shadow-md">
-                  <span className="text-xs font-bold text-gray-800 flex items-center">
-                    <Tag size={10} className="mr-1" />
-                    {getSmartPrice(product)}
-                  </span>
-                </div>
+
 
                 {/* Discount Badge - Top Right */}
                 {product.discount > 0 && (
@@ -136,9 +130,21 @@ const Card = ({ products }) => {
                 </div>
 
                 {/* Category */}
-                <p className="text-xs text-gray-600 mb-3 truncate">
-                  {product.category || 'Category'}
-                </p>
+                {/* Category and Price Badge */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 mb-3">
+                  {/* Category */}
+                  <p className="text-xs text-gray-600 truncate">
+                    {product.category || 'Category'}
+                  </p>
+
+                  {/* Price Badge */}
+                  <div className="bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full shadow-md w-fit">
+                    <span className="text-xs font-bold text-gray-800 flex items-center">
+                      <Tag size={12} className="mr-1" />
+                      {getSmartPrice(product)}
+                    </span>
+                  </div>
+                </div>
 
                 {/* Action Buttons */}
                 <div className="flex space-x-2">
