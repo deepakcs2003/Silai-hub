@@ -3,7 +3,7 @@ const { SitemapStream, streamToPromise } = require('sitemap');
 const { createWriteStream } = require('fs');
 
 (async () => {
-  const sitemap = new SitemapStream({ hostname: 'https://guddisilai.com' });
+  const sitemap = new SitemapStream({ hostname: 'https://guddisilai.shop' });
   const writeStream = createWriteStream('./public/sitemap.xml');
   sitemap.pipe(writeStream);
 
