@@ -1,138 +1,66 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AppContext } from '../App';
 import Card from './Card';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const AllProducts = () => {
   const { allProduct, getAllProduct, addToCart } = useContext(AppContext);
   const [showFeatured, setShowFeatured] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsToShow, setItemsToShow] = useState(12);
   
-  // Responsive products per page
-  const getProductsPerPage = () => {
-    if (window.innerWidth >= 1024) return 12; // Desktop: 2 rows of 6
-    if (window.innerWidth >= 768) return 8;   // Tablet: 2 rows of 4
-    return 6; // Mobile: 3 rows of 2
+  // Responsive products per page for initial load
+  const getInitialItemsToShow = () => {
+    if (window.innerWidth >= 1024) return 15; // Desktop: 3 rows of 6
+    if (window.innerWidth >= 768) return 12;  // Tablet: 3 rows of 4
+    return 12; // Mobile: 3 rows of 2
   };
 
-  const [productsPerPage, setProductsPerPage] = useState(getProductsPerPage());
+  const getItemsPerLoad = () => {
+    if (window.innerWidth >= 1024) return 10; // Desktop: 2 rows of 6
+    if (window.innerWidth >= 768) return 8;   // Tablet: 2 rows of 4
+    return 12; // Mobile: 3 rows of 2
+  };
 
   useEffect(() => {
     getAllProduct();
-  }, []);
-
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      const newProductsPerPage = getProductsPerPage();
-      setProductsPerPage(newProductsPerPage);
-      // Adjust current page if necessary
-      const newTotalPages = Math.ceil(displayedProducts.length / newProductsPerPage);
-      if (currentPage > newTotalPages) {
-        setCurrentPage(newTotalPages || 1);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    setItemsToShow(getInitialItemsToShow());
   }, []);
 
   // Filter for featured products
   const featuredProducts = allProduct.filter((product) => product.featuredProduct);
   const displayedProducts = showFeatured ? featuredProducts : allProduct;
 
-  // Pagination logic
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = displayedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-
-  // Calculate total pages
-  const totalPages = Math.ceil(displayedProducts.length / productsPerPage);
-
-  // Smooth scroll to top function
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
-  // Pagination handlers
-  const nextPage = () => {
-    setCurrentPage(prevPage => {
-      const newPage = prevPage < totalPages ? prevPage + 1 : prevPage;
-      if (newPage !== prevPage) {
-        scrollToTop();
-      }
-      return newPage;
-    });
-  };
-
-  const prevPage = () => {
-    setCurrentPage(prevPage => {
-      const newPage = prevPage > 1 ? prevPage - 1 : prevPage;
-      if (newPage !== prevPage) {
-        scrollToTop();
-      }
-      return newPage;
-    });
-  };
-
-  // Reset to first page when switching between all/featured
+  // Handle window resize
   useEffect(() => {
-    setCurrentPage(1);
-    scrollToTop();
+    const handleResize = () => {
+      const newInitialItems = getInitialItemsToShow();
+      // Only reset if we're showing less than the new initial amount
+      if (itemsToShow < newInitialItems) {
+        setItemsToShow(newInitialItems);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [itemsToShow]);
+
+  // Get current products to display
+  const currentProducts = displayedProducts.slice(0, itemsToShow);
+  const hasMoreProducts = itemsToShow < displayedProducts.length;
+
+  // Reset items when switching between all/featured
+  useEffect(() => {
+    setItemsToShow(getInitialItemsToShow());
   }, [showFeatured]);
 
-  // Go to specific page
-  const goToPage = (page) => {
-    if (page !== currentPage) {
-      setCurrentPage(page);
-      scrollToTop();
-    }
-  };
-
-  // Generate page numbers for pagination
-  const getPageNumbers = () => {
-    const pages = [];
-    const maxVisiblePages = 5;
-    
-    if (totalPages <= maxVisiblePages) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      if (currentPage <= 3) {
-        for (let i = 1; i <= 4; i++) {
-          pages.push(i);
-        }
-        pages.push('...');
-        pages.push(totalPages);
-      } else if (currentPage >= totalPages - 2) {
-        pages.push(1);
-        pages.push('...');
-        for (let i = totalPages - 3; i <= totalPages; i++) {
-          pages.push(i);
-        }
-      } else {
-        pages.push(1);
-        pages.push('...');
-        for (let i = currentPage - 1; i <= currentPage + 1; i++) {
-          pages.push(i);
-        }
-        pages.push('...');
-        pages.push(totalPages);
-      }
-    }
-    
-    return pages;
+  // View more handler
+  const handleViewMore = () => {
+    const itemsPerLoad = getItemsPerLoad();
+    setItemsToShow(prev => Math.min(prev + itemsPerLoad, displayedProducts.length));
   };
 
   return (
-    <div className=" min-h-screen" style={{
-      // background: 'linear-gradient(135deg, #d6e6ff 0%, #d7f9f8 20%, #ffffea 40%, #fff0d4 60%, #fbe0e0 80%, #e5d4ef 100%)'
-    }}>
-      <div className="w-full max-w-7xl mx-auto px-2  sm:px-4 py-4">
+    <div className="min-h-screen">
+      <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 py-4">
         
         {/* Filter Toggle */}
         <div className="flex justify-center mb-4">
@@ -160,72 +88,39 @@ const AllProducts = () => {
           </div>
         </div>
 
-        {/* Products Grid */}
-        <div className="mb-1">
+        {/* Products Masonry Grid */}
+        <div className="mb-8">
           <Card products={currentProducts} addToCart={addToCart} />
         </div>
 
-        {/* Enhanced Pagination Controls */}
-        {displayedProducts.length > productsPerPage && (
+        {/* View More Button */}
+        {hasMoreProducts && (
           <div className="flex flex-col items-center space-y-4">
+            <button
+              onClick={handleViewMore}
+              className="group relative overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
+              <span className="relative z-10">
+                View More Products
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
             
-            {/* Page Numbers */}
-            <div className="flex items-center space-x-1">
-              <button 
-                onClick={prevPage} 
-                disabled={currentPage === 1}
-                className={`
-                  p-2 rounded-lg transition-all
-                  ${currentPage === 1 
-                    ? 'bg-gray-200/80 text-gray-400 cursor-not-allowed' 
-                    : 'bg-white/90 text-purple-600 hover:bg-purple-50 shadow-md border border-white/50'
-                  }
-                `}
-              >
-                <ChevronLeft size={20} />
-              </button>
-
-              <div className="flex items-center space-x-1">
-                {getPageNumbers().map((page, index) => (
-                  <React.Fragment key={index}>
-                    {page === '...' ? (
-                      <span className="px-2 py-1 text-gray-400">...</span>
-                    ) : (
-                      <button
-                        onClick={() => goToPage(page)}
-                        className={`
-                          px-3 py-2 rounded-lg text-sm font-medium transition-all
-                          ${currentPage === page 
-                            ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md' 
-                            : 'bg-white/90 text-gray-700 hover:bg-purple-50 shadow-sm border border-white/50'
-                          }
-                        `}
-                      >
-                        {page}
-                      </button>
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
-
-              <button 
-                onClick={nextPage} 
-                disabled={currentPage === totalPages}
-                className={`
-                  p-2 rounded-lg transition-all
-                  ${currentPage === totalPages 
-                    ? 'bg-gray-200/80 text-gray-400 cursor-not-allowed' 
-                    : 'bg-white/90 text-purple-600 hover:bg-purple-50 shadow-md border border-white/50'
-                  }
-                `}
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
-
-            {/* Page Information */}
+            {/* Products Counter */}
             <div className="text-sm text-gray-600 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-white/50 shadow-sm">
-              Showing {indexOfFirstProduct + 1}-{Math.min(indexOfLastProduct, displayedProducts.length)} of {displayedProducts.length} products
+              Showing {currentProducts.length} of {displayedProducts.length} products
+            </div>
+          </div>
+        )}
+
+        {/* No More Products Message */}
+        {!hasMoreProducts && displayedProducts.length > 0 && currentProducts.length === displayedProducts.length && (
+          <div className="flex flex-col items-center space-y-4">
+            <div className="text-sm text-gray-600 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-white/50 shadow-sm">
+              Showing all {displayedProducts.length} products
+            </div>
+            <div className="text-center text-gray-500 py-4">
+              <p className="text-sm">🎉 You've seen all the products!</p>
             </div>
           </div>
         )}

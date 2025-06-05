@@ -147,9 +147,9 @@ const GalleryPage = () => {
       {/* Filter Sidebar - Mobile and Desktop */}
       <div 
         className={`
-          fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-xl transform transition-transform duration-300 ease-in-out
+          fixed inset-y-0 left-0 z-50 w-52 bg-white shadow-xl transform transition-transform duration-300 ease-in-out
           ${isFilterOpen ? 'translate-x-0' : '-translate-x-full'}
-          lg:relative lg:translate-x-0 lg:block lg:w-80 lg:shadow-none
+          lg:relative lg:translate-x-0 lg:block lg:w-60 lg:shadow-none
         `}
       >
         <div className="p-6 relative">
