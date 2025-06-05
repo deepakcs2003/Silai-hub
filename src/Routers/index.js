@@ -14,8 +14,7 @@ import SingleProductDetails from "../Pages/SingleProductDetails";
 import Carts from "../Pages/Carts";
 import Order from "../Pages/Order";
 import Contact from "../Pages/Contact";
-import FeedbackPage from "../Pages/FeedbackPage";
-
+import FeedbackPage from "../Pages/FeedbackPage"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -79,7 +78,7 @@ const router = createBrowserRouter([
       },
       {
         path:'feedback',
-        element:<FeedbackPage></FeedbackPage>
+        element:<FeedbackPage/>
       }
     ]
   }
