@@ -19,13 +19,13 @@ const FeedbackPage = () => {
 
     const currentUserId = localStorage.getItem('userId');
 
-    useEffect(() => {
-        if (!currentUserId) {
-            navigate('/login');  // Redirect to login page if userId not found
-        } else {
-            fetchFeedback();
-        }
-    }, [currentUserId, navigate, fetchFeedback]);
+    // useEffect(() => {
+    //     if (!currentUserId) {
+    //         navigate('/login');  // Redirect to login page if userId not found
+    //     } else {
+    //         fetchFeedback();
+    //     }
+    // }, [currentUserId, navigate, fetchFeedback]);
 
     useEffect(() => {
         if (allFeedback && allFeedback.length > 0) {
