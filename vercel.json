@@ -1,13 +1,23 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    {
-      "source": "/sitemap.xml",
-      "destination": "/sitemap.xml"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/about", "destination": "/index.html" },
+    { "source": "/gallery", "destination": "/index.html" },
+    { "source": "/details", "destination": "/index.html" },
+    { "source": "/login-signup", "destination": "/index.html" },
+    { "source": "/login", "destination": "/index.html" },
+    { "source": "/signup", "destination": "/index.html" },
+    { "source": "/admin", "destination": "/index.html" },
+    { "source": "/view_product", "destination": "/index.html" },
+    { "source": "/single_product_details", "destination": "/index.html" },
+    { "source": "/cart", "destination": "/index.html" },
+    { "source": "/contact", "destination": "/index.html" },
+    { "source": "/feedback", "destination": "/index.html" },
+
+    { "source": "/product/:id/:type", "destination": "/index.html" },
+    { "source": "/order/:id/:type", "destination": "/index.html" }
   ]
 }
