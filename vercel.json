@@ -1,12 +1,9 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
-  "headers": [
+  "rewrites": [
     {
       "source": "/sitemap.xml",
-      "headers": [
-        { "key": "Content-Type", "value": "application/xml" }
-      ]
+      "destination": "/sitemap.xml"
     }
   ]
 }
