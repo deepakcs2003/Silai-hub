@@ -1,49 +1,70 @@
 // Importing necessary modules
-const express = require('express'); // Import Express.js framework
-const cors = require('cors'); // Import CORS middleware for handling cross-origin requests
-const dotenv = require('dotenv'); // Import dotenv for loading environment variables from a .env file
-dotenv.config(); // Load environment variables from .env file into process.env
-const dbConnect = require('./Config/db'); // Import your database connection function
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
+
+const dbConnect = require('./Config/db');
 const authRoutes = require('./Routes/authRoutes');
 const cookieParser = require('cookie-parser');
 const productRoutes = require('./Routes/productRoutes');
 const Routes = require('./Routes/Routes');
 const UserRoutes = require('./Routes/UserRoutes');
-const feedbackRoutes = require('./Routes/feedbackRoutes'); // Import feedback routes
-const app = express(); // Initialize an Express application
+const feedbackRoutes = require('./Routes/feedbackRoutes');
+
+const app = express();
+
+// Trust the proxy (important for HTTPS redirect behind proxies like Cloudflare/EB)
+app.set('trust proxy', true);
 
 // Middleware to parse incoming JSON requests
-app.use(express.json()); // Allows the app to parse JSON data in the request body
+app.use(express.json());
 
-// Enable Cross-Origin Resource Sharing (CORS) for all routes
+// Enable CORS
 app.use(cors({
-  origin:true,  // Ensure this matches the frontend URL
-  credentials: true  // This must be true to allow cookies to be sent
-})); // This middleware allows handling requests from different origins
+  origin: true, // Or use your frontend origin e.g. 'https://your-frontend.com'
+  credentials: true
+}));
 
-// Router define
-app.use('/api/v1/auth',authRoutes);
-app.use('/api/v1/admin',productRoutes);
-app.use('/api/v1/common',Routes);
-app.use('/api/v1/user',UserRoutes);
-app.use('/api/v1/feedback',feedbackRoutes);
-
-// Cookies middleware
+// Middleware for cookie parsing
 app.use(cookieParser());
 
-// Define a home page route
+// HTTPS redirect middleware (for Cloudflare or EB Load Balancer)
+app.use((req, res, next) => {
+  // Don't redirect for AWS health check
+  if (req.url === '/health') return next();
+
+  // Redirect to HTTPS if not secure
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect('https://' + req.headers.host + req.url);
+  }
+  next();
+});
+
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
+// API Routes
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/admin', productRoutes);
+app.use('/api/v1/common', Routes);
+app.use('/api/v1/user', UserRoutes);
+app.use('/api/v1/feedback', feedbackRoutes);
+
+// Home Route
 app.get('/', (req, res) => {
-  res.send('Welcome to the SilaiHub API Home Page!'); // Send a simple welcome message
+  res.send('Welcome to the SilaiHub API Home Page!');
 });
 
-// Define the port on which the server will run
+// Start the server after DB connection
 const PORT = process.env.PORT || 8000;
-
-// Start the server only after the database connection is established
-dbConnect().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`); // Log a message when the server starts
+dbConnect()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error('Database connection failed:', error);
   });
-}).catch((error) => {
-  console.error('Database connection failed:', error);
-});
