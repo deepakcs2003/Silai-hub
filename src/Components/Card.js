@@ -257,9 +257,8 @@ const Card = ({ products }) => {
                   </div>
 
                   {/* Price Badge - Responsive */}
-                  <div className="bg-white/95 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-md border border-white/50">
+                  <div className="bg-white/95 backdrop-blur-sm px-1 sm:px-4 py-1 sm:py-2 rounded-full shadow-md border border-white/50">
                     <span className="text-xs sm:text-sm font-bold text-gray-800 flex items-center justify-center">
-                      <Tag size={12} className="mr-1 sm:mr-2 text-green-600" />
                       {getSmartPrice(product)}
                     </span>
                   </div>

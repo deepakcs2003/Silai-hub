@@ -46,6 +46,34 @@ function App() {
     }
   };
 
+  // Utility to sort products by latest date
+  const sortProductsByLatestDate = (products) => {
+    if (!Array.isArray(products)) return [];
+    
+    return [...products].sort((a, b) => {
+      // Try different possible date fields
+      const getDate = (product) => {
+        // Common date field names in products
+        const dateFields = ['createdAt', 'created_at', 'dateAdded', 'date_added', 'updatedAt', 'updated_at', 'timestamp'];
+        
+        for (const field of dateFields) {
+          if (product[field]) {
+            return new Date(product[field]);
+          }
+        }
+        
+        // If no date field found, return a very old date to put it at the end
+        return new Date('1970-01-01');
+      };
+      
+      const dateA = getDate(a);
+      const dateB = getDate(b);
+      
+      // Sort in descending order (latest first)
+      return dateB - dateA;
+    });
+  };
+
   const fetchCartData = async () => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -91,8 +119,11 @@ function App() {
         url: summaryApi.gel_all_product.url,
         method: 'get',
       });
-      setAllProduct(response.data);
-      saveCache(CACHE_KEYS.products, response.data);
+      
+      // Sort products by latest date
+      const sortedProducts = sortProductsByLatestDate(response.data);
+      setAllProduct(sortedProducts);
+      saveCache(CACHE_KEYS.products, sortedProducts);
     } catch (err) {
       console.error('Error fetching products:', err);
     }
@@ -127,9 +158,12 @@ function App() {
     const cachedCart = loadCache(CACHE_KEYS.cart);
     if (cachedCart) setCartData(cachedCart);
 
-    // Load cached products
+    // Load cached products and sort them
     const cachedProducts = loadCache(CACHE_KEYS.products);
-    if (cachedProducts) setAllProduct(cachedProducts);
+    if (cachedProducts) {
+      const sortedCachedProducts = sortProductsByLatestDate(cachedProducts);
+      setAllProduct(sortedCachedProducts);
+    }
 
     // Load cached feedback
     const cachedFeedback = loadCache(CACHE_KEYS.feedback);
@@ -156,6 +190,7 @@ function App() {
         allFeedback,
         setAllFeedback,
         fetchFeedback,
+        sortProductsByLatestDate, // Adding this to context in case other components need it
       }}
     >
       <div className="flex flex-col min-h-screen">

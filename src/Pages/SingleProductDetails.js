@@ -84,13 +84,16 @@ const SingleProductDetails = () => {
         <img
           src={mainMedia.url}
           alt="Product Media"
-          className="object-contain max-w-full max-h-full p-3"
+          className="object-contain max-w-full max-h-full p-2 sm:p-3"
         />
       </div>
     );
   };
 
   useEffect(() => {
+    // Auto scroll to top when component mounts or productId changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
     fetchData();
   }, [productId]);
 
@@ -103,20 +106,20 @@ const SingleProductDetails = () => {
   }
  
   return (
-    <div className="min-h-screen bg-gray-100 p-3">
+    <div className="min-h-screen bg-gray-100 p-2 sm:p-3">
       <CommonContactCart></CommonContactCart>
-      <div className="bg-blue-600 text-white p-6 rounded-t-lg">
-        <h1 className="text-2xl font-bold">{product.productName}</h1>
+      <div className="bg-blue-600 text-white p-4 sm:p-6 rounded-t-lg">
+        <h1 className="text-xl sm:text-2xl font-bold">{product.productName}</h1>
         <p className="text-sm text-blue-200">{product.category}</p>
       </div>
 
-      <div className="mb-8">{renderMainMedia()}</div>
+      <div className="mb-4 sm:mb-8">{renderMainMedia()}</div>
 
-      <div className="flex overflow-x-auto space-x-4 pb-8">
+      <div className="flex overflow-x-auto space-x-2 sm:space-x-4 pb-4 sm:pb-8">
         {product.images?.map((media, index) => (
           <div
             key={index}
-            className={`flex-shrink-0 w-24 h-24 relative cursor-pointer rounded-lg overflow-hidden ${mainMedia?.url === media.url ? 'ring-4 ring-blue-500' : ''
+            className={`flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 relative cursor-pointer rounded-lg overflow-hidden ${mainMedia?.url === media.url ? 'ring-2 sm:ring-4 ring-blue-500' : ''
               }`}
             onClick={() => handleMediaSelect(media)}
           >
@@ -125,25 +128,25 @@ const SingleProductDetails = () => {
         ))}
       </div>
 
-      <div className="bg-white p-6 rounded-b-lg shadow-lg">
-        <div className="flex justify-between items-center mb-6">
+      <div className="bg-white p-4 sm:p-6 rounded-b-lg shadow-lg">
+        <div className="flex justify-between items-center mb-4 sm:mb-6">
           <button
             onClick={handleLike}
             disabled={isLiked}
-            className={`flex-1 mr-4 flex items-center justify-center py-3 rounded-lg transition-all duration-300 ${isLiked
+            className={`flex-1 mr-2 sm:mr-4 flex items-center justify-center py-2 sm:py-3 rounded-lg transition-all duration-300 text-sm sm:text-base ${isLiked
                 ? 'bg-red-500 text-white cursor-not-allowed'
                 : 'bg-blue-500 text-white hover:bg-blue-600'
               }`}
           >
-            <Heart className="mr-2" />
+            <Heart className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
             {likes} Likes
           </button>
 
           <button
             onClick={handleShare}
-            className="flex-1 ml-4 flex items-center justify-center py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+            className="flex-1 ml-2 sm:ml-4 flex items-center justify-center py-2 sm:py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm sm:text-base"
           >
-            <Share2 className="mr-2" />
+            <Share2 className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
             Share
           </button>
         </div>
@@ -152,23 +155,23 @@ const SingleProductDetails = () => {
           <PopupModal product={selectedProduct} onClose={handleClosePopup} />
         )}
 
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           <MainDetails product={product} />
           <TypeDetails product={product} />
           <PriceDetails product={product} />
         </div>
 
-        <div className="flex justify-between items-center mt-6">
+        <div className="flex justify-between items-center mt-4 sm:mt-6">
           <button
             onClick={() => handlePopup('buy')}
-            className="flex-1 mr-4 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors"
+            className="flex-1 mr-2 sm:mr-4 py-2 sm:py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors text-sm sm:text-base"
           >
             Buy
           </button>
 
           <button
             onClick={() => handlePopup('add_to_cart')}
-            className="flex-1 ml-4 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
+            className="flex-1 ml-2 sm:ml-4 py-2 sm:py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors text-sm sm:text-base"
           >
             Add to Cart
           </button>
