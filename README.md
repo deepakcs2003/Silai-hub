@@ -45,6 +45,48 @@
 | Deployment   | Vercel (Frontend), Render (Backend) |
 
 ---
+# 🎨 GuddiSilai Color Palette
+
+This color palette is crafted to represent **royalty**, **affordability**, and the essence of **blouse stitching and tailoring** for the **GuddiSilai** brand.
+
+---
+
+## 🌟 Brand Colors
+
+| Color Name        | Hex Code   | Preview | Usage |
+|-------------------|------------|---------|--------|
+| **Royal Maroon**  | `#800000`  | ![#800000] | Primary brand color, buttons, headers |
+| **Soft Peach**    | `#FFE5B4`  | ![#FFE5B4] | Backgrounds, soft UI sections |
+| **Gold Dust**     | `#D4AF37`  | ![#D4AF37] | Borders, icons, decorative accents |
+| **Slate Grey**    | `#4A4A4A`  | ![#4A4A4A] | Main text color |
+| **Thread Blue**   | `#6C8CD5`  | ![#6C8CD5] | Hover effects, buttons, highlights |
+
+---
+
+## 🧵 Usage in CSS
+
+```css
+:root {
+  --color-maroon: #800000;
+  --color-peach: #FFE5B4;
+  --color-gold: #D4AF37;
+  --color-grey: #4A4A4A;
+  --color-thread-blue: #6C8CD5;
+}
+
+/* Example Usage */
+.button-primary {
+  background-color: var(--color-maroon);
+  color: white;
+}
+
+.section-background {
+  background-color: var(--color-peach);
+}
+
+.text-main {
+  color: var(--color-grey);
+}
 
 ## 📂 Project Structure
 
