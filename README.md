@@ -65,7 +65,7 @@ This color palette is crafted to represent **royalty**, **affordability**, and t
 
 ## 🧵 Usage in CSS
 
-```css
+```
 :root {
   --color-maroon: #800000;
   --color-peach: #FFE5B4;
@@ -90,7 +90,6 @@ This color palette is crafted to represent **royalty**, **affordability**, and t
 
 ## 📂 Project Structure
 
-```
 
 guddisilai/
 ├── backend/                # Express Backend
