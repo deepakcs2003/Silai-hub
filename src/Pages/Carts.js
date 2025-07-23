@@ -5,7 +5,7 @@ import summaryApi from '../Common';
 import CommonContactCart from '../Components/CommonContactCart';
 import CartItemSkeleton from '../Components/Skeleton/CartItemSkeleton';
 import { Heart, Trash2, Plus, Minus, ShoppingBag } from 'lucide-react';
-
+ 
 const CartMessage = ({ type }) => {
   const config = {
     empty: { bg: '#d6e6ff', text: '#1e40af', msg: 'Ready to transform your space? Add some items to your cart!' },
@@ -15,7 +15,7 @@ const CartMessage = ({ type }) => {
 
   const { bg, text, msg } = config[type];
   return (
-    <div className="p-4 rounded-2xl text-center mb-6 font-semibold shadow-lg" style={{ backgroundColor: bg, color: text }}>
+    <div className="p-4 font-body rounded-2xl text-center mb-6 font-semibold shadow-lg" style={{ backgroundColor: bg, color: text }}>
       {msg}
     </div>
   );
@@ -31,7 +31,7 @@ const OrderButton = ({ item }) => {
   return (
     <button
       onClick={handleOrderNow}
-      className="mt-4 w-full px-6 py-3 bg-purple-500 text-white rounded-2xl font-semibold hover:bg-purple-600 transition-all duration-300 hover:scale-105 shadow-lg"
+      className="mt-4 w-full px-6 py-3 bg-purple-500 text-white rounded-2xl font-body font-semibold hover:bg-purple-600 transition-all duration-300 hover:scale-105 shadow-lg"
     >
       {item.productType === 'tailor' ? 'Add Measurement' : 'Order Now'}
     </button>
@@ -63,7 +63,7 @@ const CartItemCard = ({ item, onUpdateCart, onDeleteItem }) => {
 
   
   return (
-    <div className="bg-white rounded-3xl p-6 mb-6 shadow-xl border-2 border-opacity-20 hover:shadow-2xl hover:scale-[1.01] transition-all duration-300" style={{ borderColor: '#e5d4ef' }}>
+    <div className="bg-white font-body rounded-3xl p-6 mb-6 shadow-xl border-2 border-opacity-20 hover:shadow-2xl hover:scale-[1.01] transition-all duration-300" style={{ borderColor: '#e5d4ef' }}>
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Image section - clickable */}
         <div className="relative lg:w-48" onClick={handleCardClick}>
@@ -74,24 +74,24 @@ const CartItemCard = ({ item, onUpdateCart, onDeleteItem }) => {
           />
           <button
             onClick={handleHeartClick}
-            className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-lg transition-colors"
+            className="absolute top-3 right-3 p-2 bg-white rounded-full text-fs-6 font-body shadow-lg transition-colors"
             style={{ color: isLiked ? '#dc2626' : '#6b7280' }}
           >
             <Heart size={20} fill={isLiked ? 'currentColor' : 'none'} />
           </button>
           {item.discount > 0 && (
-            <div className="absolute top-3 left-3 px-3 py-1 bg-green-600 text-white rounded-full text-sm font-bold">
+            <div className="absolute top-3 left-3 px-3 py-1 bg-green-600 text-white rounded-fulltext-fs-6 font-body text-sm font-bold">
               {item.discount}% OFF
             </div>
           )}
         </div>
 
-        <div className="flex-grow">
+        <div className="flex-grow font-body">
           <div className="flex justify-between items-start mb-4">
             {/* Title section - clickable */}
             <div onClick={handleCardClick} className="cursor-pointer flex-grow">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2 hover:text-blue-600 transition-colors">{item.ProductName}</h3>
-              <span className="inline-block px-3 py-1 rounded-full text-sm font-medium"
+              <h3 className="text-2xl text-fs-4 font-body font-bold text-gray-800 mb-2 hover:text-blue-600 transition-colors">{item.ProductName}</h3>
+              <span className="inline-block text-fs-4 font-body  px-3 py-1 rounded-full text-sm font-medium"
                 style={{
                   backgroundColor: item.productType === 'tailor' ? '#e5d4ef' : '#d7f9f8',
                   color: item.productType === 'tailor' ? '#8b5cf6' : '#047857'
@@ -101,14 +101,14 @@ const CartItemCard = ({ item, onUpdateCart, onDeleteItem }) => {
             </div>
             <button 
               onClick={handleDeleteClick}
-              className="p-2 hover:bg-red-50 rounded-full text-red-600 transition-colors"
+              className="text-fs-6 font-body p-2 hover:bg-red-50 rounded-full text-red-600 transition-colors"
             >
               <Trash2 size={20} />
             </button>
           </div>
 
           {/* Price details section - clickable */}
-          <div className="rounded-2xl p-4 mb-4 cursor-pointer hover:bg-opacity-80 transition-colors" 
+          <div className=" font-body rounded-2xl p-4 mb-4 cursor-pointer hover:bg-opacity-80 transition-colors" 
                style={{ backgroundColor: '#ffffea' }}
                onClick={handleCardClick}>
             <div className="grid grid-cols-2 gap-4 text-sm">
@@ -122,19 +122,19 @@ const CartItemCard = ({ item, onUpdateCart, onDeleteItem }) => {
           </div>
 
           {/* Quantity controls - not clickable for navigation */}
-          <div className="flex items-center gap-4 mb-4">
+          <div className=" font-body flex items-center gap-4 mb-4">
             <span className="text-lg font-semibold">Qty:</span>
             <div className="flex items-center gap-3">
               <button
                 onClick={(e) => handleQuantityChange(e, 'decrease')}
-                className="w-12 h-12 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 hover:scale-110 transition-all"
+                className=" text-fs-6 font-body w-12 h-12 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 hover:scale-110 transition-all"
               >
                 <Minus size={20} />
               </button>
               <span className="text-2xl font-bold px-4 py-2 rounded-xl bg-gray-100 min-w-[3rem] text-center">{item.quantity}</span>
               <button
                 onClick={(e) => handleQuantityChange(e, 'increase')}
-                className="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 hover:scale-110 transition-all"
+                className="w-12 h-12 text-fs-6 font-body bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 hover:scale-110 transition-all"
               >
                 <Plus size={20} />
               </button>
@@ -254,7 +254,7 @@ const Carts = () => {
           <p className="text-gray-700 mb-6">{error}</p>
           <button
             onClick={() => fetchCartData()}
-            className="bg-blue-500 text-white px-6 py-2 rounded-2xl hover:bg-blue-600 transition-colors"
+            className="bg-blue-500 text-fs-6 font-body text-white px-6 py-2 rounded-2xl hover:bg-blue-600 transition-colors"
           >
             Try Again
           </button>
@@ -270,7 +270,7 @@ const Carts = () => {
           <p className="text-xl text-gray-600 mb-4">No cart data available</p>
           <button
             onClick={() => fetchCartData()}
-            className="bg-blue-500 text-white px-6 py-2 rounded-2xl hover:bg-blue-600 transition-colors"
+            className="bg-blue-500 text-fs-6 font-body text-white px-6 py-2 rounded-2xl hover:bg-blue-600 transition-colors"
           >
             Refresh Cart
           </button>

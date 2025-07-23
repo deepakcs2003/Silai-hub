@@ -11,7 +11,7 @@ import {
   ChevronDown,
   Phone
 } from 'lucide-react';
-
+ 
 import { AppContext } from '../App';
 import Measurement from '../Components/OrderComponent/Measurement';
 import OrderType from '../Components/OrderComponent/OrderType';
@@ -217,7 +217,7 @@ const Order = () => {
       );
     } else {
       return (
-        <div className="bg-white shadow-md rounded-lg  p-6 space-y-4">
+        <div className="bg-white shadow-md rounded-lg font-body p-6 space-y-4">
           <h3 className="text-2xl font-bold text-gray-800 mb-4">Product Details</h3>
           <div className="grid grid-cols-2 gap-4">
             <div>

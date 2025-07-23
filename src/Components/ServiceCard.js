@@ -1,13 +1,15 @@
 import React from 'react';
 import { Shirt, Star, Scissors } from 'lucide-react';
-
+ 
 const ServiceCard = ({ icon, title, description }) => (
   <div className="bg-neutral-50 p-6 rounded-lg shadow-md text-center hover:shadow-xl transition">
     <div className="flex justify-center mb-4">
       {icon}
     </div>
-    <h3 className="text-xl font-semibold mb-2 text-primary">{title}</h3>
-    <p className="text-neutral-600">{description}</p>
+    <h3 className="text-fs-3 font-heading leading-tight tracking-tight text-primary mb-2">{title}</h3>
+    <p className="text-fs-6 font-body text-neutral-600 leading-normal tracking-wide">
+      {description}
+    </p>
   </div>
 );
 
@@ -33,8 +35,13 @@ const Services = () => {
   return (
     <section className="container mx-auto py-16 px-4">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-brand-primary">Our Services</h2>
-        <p className="text-neutral-600 mt-4">Crafting Perfection, Stitch by Stitch</p>
+         <h2 className="text-fs-2 font-heading leading-tight tracking-tight text-brand-primary">
+          Our Services
+        </h2>
+        <p className="text-fs-6 font-body text-neutral-600 mt-4 leading-normal tracking-wide">
+          Crafting Perfection, Stitch by Stitch
+        </p>
+        
       </div>
       
       <div className="grid md:grid-cols-3 gap-8">

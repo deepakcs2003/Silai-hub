@@ -102,16 +102,13 @@ const HeroSection = () => {
       {/* Hero Content */}
       <div className="relative z-20 container mx-auto px-4 flex flex-col justify-center h-full text-center">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4 text-white 
-                         drop-shadow-lg animate-fade-in-up">
+          <h1 className="text-fs-1 md:text-fs-2 font-heading font-bold mb-4 text-white leading-tight tracking-tight drop-shadow-lg animate-fade-in-up">
             {heroContent[currentSlide].title}
           </h1>
-          <h2 className="text-xl md:text-2xl font-semibold mb-4 text-white/90 
-                         drop-shadow-md animate-fade-in-up animation-delay-200">
+          <h2 className="text-fs-4 md:text-fs-3 font-heading font-semibold mb-4 text-white/90 leading-tight drop-shadow-md animate-fade-in-up animation-delay-200">
             {heroContent[currentSlide].subtitle}
           </h2>
-          <p className="text-md md:text-lg mb-8 text-white/80 
-                        drop-shadow-md animate-fade-in-up animation-delay-400 max-w-2xl mx-auto">
+          <p className="text-fs-6 md:text-fs-5 mb-8 text-white/80 leading-normal drop-shadow-md animate-fade-in-up animation-delay-400 max-w-2xl mx-auto">
             {heroContent[currentSlide].description}
           </p>
           
@@ -119,11 +116,11 @@ const HeroSection = () => {
             {/* First Button with Link */}
             <a 
               href={heroContent[currentSlide].link} 
-              className="bg-white text-gray-900 px-6 py-2 rounded-full 
-                         hover:bg-gray-100 transition duration-300 
-                         flex items-center font-semibold shadow-lg"
+              className="bg-white text-deep-burgundy px-6 py-2 rounded-full 
+                         hover:bg-gold hover:text-white transition duration-300 
+                         flex items-center font-semibold font-body shadow-lg"
             >
-              {heroContent[currentSlide].buttonText} 
+              {heroContent[currentSlide].buttonText}
               <ArrowRight className="ml-2 w-5 h-5" />
             </a>
 
@@ -132,7 +129,7 @@ const HeroSection = () => {
               href="/about" 
               className="bg-transparent border-2 border-white text-white 
                          px-6 py-2 rounded-full hover:bg-white/20 
-                         transition duration-300 flex items-center font-semibold"
+                         transition duration-300 flex items-center font-body font-medium"
             >
               Learn More 
               <ArrowRight className="ml-2 w-5 h-5" />

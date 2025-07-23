@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
-
+ 
 const Contact = () => {
   // Structured data for SEO
   const structuredData = {
@@ -27,7 +27,7 @@ const Contact = () => {
         {JSON.stringify(structuredData)}
       </script>
       
-      <div className="min-h-screen py-4 px-3 sm:py-8 sm:px-4 lg:px-6" 
+      <div className="font-body min-h-screen py-4 px-3 sm:py-8 sm:px-4 lg:px-6" 
            style={{ background: 'linear-gradient(135deg, #d6e6ff 0%, #d7f9f8 50%, #ffffea 100%)' }}>
         
         {/* Main Container */}
@@ -41,12 +41,9 @@ const Contact = () => {
               <div className="absolute bottom-0 right-0 w-48 h-48 bg-white rounded-full translate-x-24 translate-y-24"></div>
             </div>
             <div className="relative text-center py-8 px-4 sm:py-12 sm:px-6">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4">
-                Contact Us
-              </h1>
-              <p className="text-base sm:text-lg lg:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
-                We are always here to assist you with all your tailoring needs!
-              </p>
+              <h1 className="text-fs-2 font-heading font-bold text-deep-burgundy mb-4">Contact Us</h1>
+              <p className="text-fs-6 text-gray-700 max-w-2xl mx-auto leading-normal">We are always here to assist you with all your tailoring needs!</p>
+            
             </div>
           </div>
 
@@ -54,7 +51,7 @@ const Contact = () => {
           <div className="px-4 py-5 sm:px-6 sm:py-6 text-center" 
                style={{ backgroundColor: '#ffffea' }}>
             <div className="max-w-4xl mx-auto">
-              <p className="text-sm sm:text-base text-gray-700 italic leading-relaxed">
+              <p className="text-fs-6 text-gray-700 italic leading-relaxed">
                 Aap humein kabhi bhi contact kar sakte hain. Hum aapke liye hamesha tayar hain, 
                 chahe wo product related ho, design related ho, ya koi aur madad chahiye ho.
               </p>

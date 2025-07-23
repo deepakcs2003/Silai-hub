@@ -2,7 +2,7 @@ import React from 'react';
 import { fabricTypes } from '../../Common/option';
 
 const SareeDetails = ({ formData, setformdata }) => {
-
+ 
   const handleNestedInputChange = (nestedKey, event) => {
     const { name, value, type, checked } = event.target;
     setformdata((prevFormData) => ({
@@ -17,7 +17,7 @@ const SareeDetails = ({ formData, setformdata }) => {
   return (
     <div className="space-y-4">
       <div className="flex flex-col">
-        <label className="font-medium text-gray-700">Saree Length</label>
+        <label className="font-medium text-gray-700 tracking-wide">Saree Length</label>
         <input
           type="text"
           name="sareeLength"
@@ -35,8 +35,8 @@ const SareeDetails = ({ formData, setformdata }) => {
           onChange={(e) => handleNestedInputChange('sareeDetails', e)}
           className="mr-2"
         />
-        <label className="font-medium text-gray-700">Blouse Included</label>
-      </div>
+       <label className="font-medium text-gray-700 tracking-wide">Blouse Included</label>
+       </div>
 
       <div className="flex items-center">
         <input
@@ -46,11 +46,11 @@ const SareeDetails = ({ formData, setformdata }) => {
           onChange={(e) => handleNestedInputChange('sareeDetails', e)}
           className="mr-2"
         />
-        <label className="font-medium text-gray-700">Pleated</label>
+        <label className="font-medium text-gray-700 tracking-wide">Pleated</label>
       </div>
 
       <div className="flex flex-col">
-        <label className="font-medium text-gray-700">Blouse Fit Type</label>
+      <label className="font-medium text-gray-700 tracking-wide">Blouse Fit Type</label>
         <select
           name="blouseFitType"
           value={formData.sareeDetails.blouseFitType}
@@ -64,7 +64,7 @@ const SareeDetails = ({ formData, setformdata }) => {
       </div>
 
       <div className="flex flex-col">
-        <label className="font-medium text-gray-700">Embroidery Details</label>
+        <label className="font-medium text-gray-700 tracking-wide">Embroidery Details</label>
         <input
           type="text"
           name="embroideryDetails"

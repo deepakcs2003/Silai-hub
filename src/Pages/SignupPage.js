@@ -8,7 +8,7 @@ const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-
+ 
   const handleSignup = async (e) => {
     e.preventDefault();
     const response = await fetch(summaryApi.signUp.url, {
@@ -63,7 +63,7 @@ const SignupPage = () => {
 
   return (
     <div 
-      className="min-h-screen flex items-center justify-center px-4 py-8" 
+      className="min-h-screen flex items-center justify-center px-4 py-8 font-body" 
       style={{background: 'linear-gradient(135deg, #d7f9f8 0%, #ffffea 25%, #fff0d4 50%, #fbe0e0 75%, #e5d4ef 100%)'}}
     >
       <div className="w-full max-w-md">
@@ -82,8 +82,8 @@ const SignupPage = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
               </svg>
             </div>
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">Join Us Today</h1>
-            <p className="text-gray-600">Create your new account</p>
+            <h1 className="text-fs-2 font-heading text-deep-burgundy leading-tight">Join Us Today</h1>
+            <p className="text-fs-6 text-gray-600 tracking-tight">Create your new account</p>
           </div>
 
 
@@ -116,7 +116,7 @@ const SignupPage = () => {
                     placeholder="Enter your full name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-200 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 outline-none text-gray-700 placeholder-gray-400"
+                    className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gold focus:ring-4 focus:ring-gold/30 outline-none text-fs-6 text-deep-burgundy placeholder-gray-400 font-body bg-off-white"
                     style={{background: 'linear-gradient(135deg, #d7f9f8, #ffffea)'}}
                   />
                   <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
@@ -132,7 +132,7 @@ const SignupPage = () => {
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-200 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 outline-none text-gray-700 placeholder-gray-400"
+                    className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gold focus:ring-4 focus:ring-gold/30 outline-none text-fs-6 text-deep-burgundy placeholder-gray-400 font-body bg-off-white"
                     style={{background: 'linear-gradient(135deg, #d7f9f8, #ffffea)'}}
                   />
                   <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
@@ -148,7 +148,7 @@ const SignupPage = () => {
                     placeholder="Create a password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-200 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition-all duration-300 outline-none text-gray-700 placeholder-gray-400"
+                     className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gold focus:ring-4 focus:ring-gold/30 outline-none text-fs-6 text-deep-burgundy placeholder-gray-400 font-body bg-off-white"
                     style={{background: 'linear-gradient(135deg, #d7f9f8, #ffffea)'}}
                   />
                   <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
@@ -161,7 +161,7 @@ const SignupPage = () => {
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-2xl font-semibold text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="w-full py-4 rounded-2xl font-semibold text-white font-heading text-fs-5 shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300 bg-gradient-to-r from-deep-burgundy to-gold"
                 style={{background: 'linear-gradient(135deg, #10b981, #059669)'}}
               >
                 Create Account
@@ -171,7 +171,7 @@ const SignupPage = () => {
            
 
             {/* Login Link */}
-            <div className="text-center mt-8">
+            <div className="text-center mt-8 text-fs-7">
               <p className="text-gray-600">
                 Already have an account?{' '}
                 <a 
@@ -186,7 +186,7 @@ const SignupPage = () => {
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-8">
+        <div className="text-center mt-6 text-fs-7 text-gray-500">
           <p className="text-gray-500 text-sm">
             By signing up, you agree to our Terms & Privacy Policy
           </p>

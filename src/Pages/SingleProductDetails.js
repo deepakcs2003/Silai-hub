@@ -7,7 +7,7 @@ import MainDetails from '../Components/CommonComponents/MainDetails';
 import PriceDetails from '../Components/CommonComponents/PriceDetails';
 import PopupModal from '../Components/PopupModal';
 import CommonContactCart from '../Components/CommonContactCart';
-
+ 
 const SingleProductDetails = () => {
   const { id } = useParams();
   const productId = id;
@@ -79,7 +79,7 @@ const SingleProductDetails = () => {
     if (!mainMedia) return null;
 
     return (
-      <div className="bg-white rounded-lg shadow-lg flex justify-center items-center">
+      <div className="bg-white rounded-lg font-body shadow-lg flex justify-center items-center">
         <img
           src={mainMedia.url}
           alt="Product Media"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Scissors, Award, Clock, Image as ImageIcon } from 'lucide-react';
-
+ 
 // Import your images (assuming the import paths are correct)
 import w1 from '../Assist/workProcessImages/w1.jpg'
 import w2 from '../Assist/workProcessImages/w2.jpg'
@@ -23,13 +23,13 @@ const AboutUsPage = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-pink-50 to-purple-50">
+    <div className="bg-gradient-to-br from-pink-50 to-purple-50 font-body">
       {/* Who We Are Section */}
       <section className="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center">
         <div className="space-y-6">
           <div className="flex items-center space-x-4">
             <Scissors className="text-pink-500" size={48} />
-            <h1 className="text-4xl font-bold text-gray-800">
+            <h1 className="text-fs-1 font-heading text-deep-burgundy">
               Our Stitching Journey
             </h1>
           </div>
@@ -59,11 +59,11 @@ const AboutUsPage = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center space-x-4 mb-8">
             <Award className="text-purple-500" size={48} />
-            <h2 className="text-4xl font-bold text-gray-800">
+            <h2 className="text-fs-2 font-heading text-deep-burgundy">
               Our Mission
             </h2>
           </div>
-          <p className="max-w-3xl mx-auto text-xl text-gray-700 leading-relaxed">
+          <p className="max-w-3xl mx-auto text-fs-5 text-gray-700 leading-normal">
             We are committed to delivering exceptional quality, personalised service, and impeccable fit. Our mission is to transform fabrics into masterpieces that not only look stunning but make you feel confident and comfortable.
           </p>
         </div>
@@ -73,7 +73,7 @@ const AboutUsPage = () => {
       <section className="container mx-auto px-4 py-16">
         <div className="flex items-center justify-center space-x-4 mb-12">
           <ImageIcon className="text-pink-500" size={48} />
-          <h2 className="text-4xl font-bold text-gray-800">
+          <h2 className="text-fs-2 font-heading text-deep-burgundy">
             Our Workshop
           </h2>
         </div>
@@ -107,7 +107,7 @@ const AboutUsPage = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center space-x-4 mb-12">
             <Clock className="text-purple-500" size={48} />
-            <h2 className="text-4xl font-bold text-gray-800">
+            <h2 className="text-fs-2 font-heading text-deep-burgundy">
               Our Achievements
             </h2>
           </div>
@@ -134,10 +134,10 @@ const AboutUsPage = () => {
                 className="text-center p-8 rounded-2xl bg-gradient-to-br from-white to-gray-50 shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2"
               >
                 {achievement.icon}
-                <h3 className="text-2xl font-bold mb-3 text-gray-800">
+                <h3 className="text-fs-4 font-heading mb-3 text-gray-800">
                   {achievement.title}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-fs-6 font-bodytext-gray-600">
                   {achievement.subtitle}
                 </p>
               </div>

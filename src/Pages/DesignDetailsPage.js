@@ -9,7 +9,7 @@ import {
   Shirt 
 } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
-
+ 
 const DesignDetailsPage = ({ onClose }) => {
   const location = useLocation();
   const { design } = location.state || {}; // Add fallback to avoid undefined error
@@ -27,8 +27,8 @@ const DesignDetailsPage = ({ onClose }) => {
 
   // Render Blouse Tailoring Details
   const renderBlouseTailoringDetails = () => (
-    <div className="bg-gray-100 p-4 rounded-lg">
-      <h3 className="text-xl font-semibold mb-3 flex items-center">
+    <div className="font-body bg-gray-100 p-4 rounded-lg">
+      <h3 className="text-xl text-fs-3 font-semibold mb-3 flex items-center">
         <Shirt className="mr-2 text-blue-600" />
         Blouse Tailoring Details
       </h3>
@@ -44,7 +44,7 @@ const DesignDetailsPage = ({ onClose }) => {
 
   // Render Embellishments Details
   const renderEmbellishments = () => (
-    <div className="bg-gray-100 p-4 rounded-lg">
+    <div className="bg-gray-100 p-4 font-body rounded-lg">
       <h3 className="text-xl font-semibold mb-3 flex items-center">
         Embellishments
       </h3>
@@ -62,8 +62,8 @@ const DesignDetailsPage = ({ onClose }) => {
     const discountedPrice = (design?.price?.max * (1 - design.discount / 100)).toFixed(2);
     return (
       <div>
-        <span className="text-xl font-bold text-blue-600">₹{discountedPrice}</span>
-        <span className="ml-2 text-sm text-gray-500 line-through">₹{design?.price?.max}</span>
+        <span className="text-xl text-fs-6 font-bold text-blue-600">₹{discountedPrice}</span>
+        <span className="ml-2 text-sm text-fs-6 text-gray-500 line-through">₹{design?.price?.max}</span>
       </div>
     );
   };
@@ -139,7 +139,7 @@ const DesignDetailsPage = ({ onClose }) => {
 
           {/* Customization Options */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 flex items-center">
+            <h3 className="text-xl text-fs-4 font-semibold mb-4 flex items-center">
               <Scissors className="mr-2 text-blue-600" />
               Customization Options
             </h3>
