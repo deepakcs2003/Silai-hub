@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PopupModal from "./PopupModal";
 import CardSkeleton from "./Skeleton/CardSkeleton";
+import { ShoppingCart, Star } from "lucide-react"; // ✅ Add this import
 
 const Card = ({ products }) => {
   const [popupVisible, setPopupVisible] = useState(false);
@@ -67,48 +68,39 @@ const Card = ({ products }) => {
                 )}
               </div>
 
-              {/* Product Details - Responsive */}
-              <div className="p-3 sm:p-4">
-                {/* Product Name and Rating - Responsive */}
+              {/* Product Details */}
+              <div className="p-3 sm:p-4 flex flex-col flex-1">
                 <div className="flex justify-between items-start mb-2 sm:mb-3">
                   <h3 className="font-heading text-fs-6 sm:text-fs-5 text-gray-800 line-clamp-2 leading-tight flex-1 pr-2">
-
                     {product.productName || `Premium Product ${index + 1}`}
                   </h3>
                   <div className="flex items-center text-yellow-500 bg-yellow-50 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">
                     <Star size={10} fill="currentColor" className="mr-0.5 sm:mr-1" />
-                    <span className="font-body text-fs-7">4.{Math.floor(Math.random() * 5) + 5}</span>
+                    <span className="font-body text-fs-7">
+                      4.{Math.floor(Math.random() * 5) + 5}
+                    </span>
                   </div>
                 </div>
 
-                {/* Category and Price Section - Responsive */}
                 <div className="flex flex-col gap-2 sm:gap-3 mb-3 sm:mb-4">
-                  {/* Category and Featured Badge */}
                   <div className="flex items-center justify-between">
                     <p className="font-body text-fs-7 text-gray-600 bg-gray-100 px-2 py-1 rounded-full truncate max-w-[60%]">
-
-
-                      {product.category || 'Fashion'}
+                      {product.category || "Fashion"}
                     </p>
-                    {/* Featured Badge */}
                     {product.featuredProduct && (
                       <span className="font-heading text-fs-7 bg-purple-100 text-purple-600 px-2 py-1 rounded-full font-medium">
-                          Featured
+                        Featured
                       </span>
                     )}
                   </div>
-
-                  {/* Price Badge - Responsive */}
                   <div className="bg-white/95 backdrop-blur-sm px-1 sm:px-4 py-1 sm:py-2 rounded-full shadow-md border border-white/50">
                     <span className="font-heading text-fs-6 sm:text-fs-5 font-bold text-gray-800 flex items-center justify-center">
-
                       {getSmartPrice(product)}
                     </span>
                   </div>
                 </div>
 
-                {/* Action Buttons - Responsive */}
-                <div className="flex space-x-2">
+                <div className="flex space-x-2 mt-auto">
                   <button
                     onClick={(event) => handleOrderClick(product, event)}
                     className="
@@ -125,7 +117,6 @@ const Card = ({ products }) => {
                       justify-center
                       text-fs-6 sm:text-fs-5
                       font-heading
-
                       group/btn
                       shadow-md
                       hover:shadow-lg
@@ -160,22 +151,6 @@ const Card = ({ products }) => {
                     Cart
                   </button>
                 </div>
-              {/* Details */}
-              <div className="flex flex-col justify-between flex-1 p-4">
-                <h3 className="text-sm font-semibold text-gray-800 line-clamp-2 mb-2">
-                  {product.productName || `Design ${index + 1}`}
-                </h3>
-
-                <div className="text-base font-bold text-gray-900 mb-2">
-                  {getSmartPrice(product)}
-                </div>
-
-                <button
-                  onClick={(event) => handleOrderClick(product, event)}
-                  className="mt-auto bg-pink-600 text-white rounded-lg px-3 py-2 text-sm font-semibold hover:bg-pink-700 transition w-full"
-                >
-                  View Design
-                </button>
               </div>
             </div>
           ))}
