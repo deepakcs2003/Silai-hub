@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import summaryApi from '../Common';
 import TypeDetails from '../Components/CommonComponents/TypeDetails';
 import { Heart, Phone, Share2, Smartphone } from 'lucide-react';
@@ -9,9 +9,8 @@ import PopupModal from '../Components/PopupModal';
 import CommonContactCart from '../Components/CommonContactCart';
 
 const SingleProductDetails = () => {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const productId = queryParams.get('productId');
+  const { id } = useParams();
+  const productId = id;
 
   const [product, setProduct] = useState(null);
   const [mainMedia, setMainMedia] = useState(null);
@@ -93,7 +92,7 @@ const SingleProductDetails = () => {
   useEffect(() => {
     // Auto scroll to top when component mounts or productId changes
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
+
     fetchData();
   }, [productId]);
 
@@ -134,8 +133,8 @@ const SingleProductDetails = () => {
             onClick={handleLike}
             disabled={isLiked}
             className={`flex-1 mr-2 sm:mr-4 flex items-center justify-center py-2 sm:py-3 rounded-lg transition-all duration-300 text-sm sm:text-base ${isLiked
-                ? 'bg-red-500 text-white cursor-not-allowed'
-                : 'bg-blue-500 text-white hover:bg-blue-600'
+              ? 'bg-red-500 text-white cursor-not-allowed'
+              : 'bg-blue-500 text-white hover:bg-blue-600'
               }`}
           >
             <Heart className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />

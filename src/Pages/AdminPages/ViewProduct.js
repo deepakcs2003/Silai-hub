@@ -37,14 +37,14 @@ const ViewProduct = () => {
         'Are you sure you want to delete this product? This action cannot be undone.'
       );
       if (!confirmDelete) return;
-  
+
       // Retrieve the token from localStorage
       const storedToken = localStorage.getItem('token');
       if (!storedToken) {
         console.error('No token found in localStorage');
         return;
       }
-  
+
       // Make the DELETE request using fetch
       const response = await fetch(`${summaryApi.delete_product.url}`, {
         method: 'DELETE',
@@ -54,12 +54,12 @@ const ViewProduct = () => {
         },
         body: JSON.stringify({ productId }),
       });
-  
+
       // Check if the request was successful
       if (!response.ok) {
         throw new Error('Failed to delete the product');
       }
-  
+
       // Update the state to remove the deleted product
       setResponseData((prevData) =>
         prevData.filter((product) => product._id !== productId)
@@ -72,13 +72,13 @@ const ViewProduct = () => {
   };
 
   const productDetails = (productId) => {
-    navigate(`/single_product_details?productId=${productId}`);
+    navigate(`/product/${productId}`);
   };
 
   const updateProduct = (productId) => {
     navigate(`/product/${productId}/update`);
   };
-  
+
 
   useEffect(() => {
     fetchData();

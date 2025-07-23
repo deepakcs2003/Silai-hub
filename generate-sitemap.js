@@ -17,7 +17,8 @@ const { createWriteStream } = require('fs');
   sitemap.write({ url: '/signup', changefreq: 'monthly', priority: 0.6 });
   sitemap.write({ url: '/admin', changefreq: 'monthly', priority: 0.5 });
   sitemap.write({ url: '/view_product', changefreq: 'monthly', priority: 0.5 });
-  sitemap.write({ url: '/single_product_details', changefreq: 'monthly', priority: 0.5 });
+  // Product details route (dynamic)
+  sitemap.write({ url: '/product/sample-product-id', changefreq: 'weekly', priority: 0.6 });
   sitemap.write({ url: '/cart', changefreq: 'weekly', priority: 0.8 });
   sitemap.write({ url: '/contact', changefreq: 'monthly', priority: 0.7 });
   sitemap.write({ url: '/feedback', changefreq: 'monthly', priority: 0.7 });
