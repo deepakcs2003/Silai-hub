@@ -85,10 +85,10 @@ const ViewProduct = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen p-8">
-      <h1 className="text-3xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-10">
-        Our Product Catalog
-      </h1>
+    <div className="bg-gradient-to-br from-off-white to-gray-100 min-h-screen p-8 font-body text-fs-6 leading-normal tracking-wide">
+    <h1 className="text-fs-1 font-heading text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-10 leading-tight tracking-tight">
+      Our Product Catalog
+    </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {responseData.map((product) => (
           <div
@@ -108,47 +108,42 @@ const ViewProduct = () => {
 
               {/* Product Details */}
               <div className="p-6">
-                <h2 className="text-xl font-bold text-gray-800 mb-2 truncate">
-                  {product.productName}
-                </h2>
-                <p className="text-sm text-gray-500 mb-4 line-clamp-2">
-                  {product.description || 'No description available.'}
-                </p>
+              <h2 className="text-fs-3 font-heading text-gray-800 mb-2 truncate leading-tight tracking-tight">
+                {product.productName}
+              </h2>
+              <p className="text-fs-6 text-gray-600 mb-4 line-clamp-2 leading-normal tracking-wide">
+                {product.description || 'No description available.'}
+              </p>
 
                 {/* Price Section */}
                 <div className="flex justify-between mb-4">
                   <div className="flex flex-col">
-                    <span className="text-xs text-gray-500">tailor Price</span>
-                    <span className="text-lg font-bold text-green-600">
-                      ₹{product.tailorPrice || 'N/A'}
-                    </span>
+                      <span className="text-fs-7 text-gray-500 leading-normal tracking-tight">Tailor Price</span>
+                      <span className="text-fs-5 font-semibold text-green-600 leading-tight">₹{product.tailorPrice || 'N/A'}</span>
                   </div>
                   <div className="flex flex-col items-end">
-                    <span className="text-xs text-gray-500">Ready-made Price</span>
-                    <span className="text-lg font-bold text-blue-600">
-                      ₹{product.readyMadePrice || 'N/A'}
-                    </span>
+                    <span className="text-fs-7 text-gray-500 leading-normal tracking-tight">Ready-made Price</span>
+                    <span className="text-fs-5 font-semibold text-blue-600 leading-tight">₹{product.readyMadePrice || 'N/A'}</span>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
                 <div className="flex space-x-3">
                   <button
-                    className="flex-1 flex items-center justify-center bg-blue-100 text-blue-600 py-2 rounded-lg hover:bg-blue-200 transition"
+                         className="flex-1 flex items-center justify-center bg-blue-100 text-blue-600 py-2 rounded-lg hover:bg-blue-200 transition text-fs-7 font-medium"
                     onClick={() => productDetails(product._id)}
                   >
                     <Eye size={18} className="mr-2" />
                     View
                   </button>
                   <button
-                    className="flex-1 flex items-center justify-center bg-green-100 text-green-600 py-2 rounded-lg hover:bg-green-200 transition"
-                    onClick={() => updateProduct(product._id)}
+                      className="flex-1 flex items-center justify-center bg-green-100 text-green-600 py-2 rounded-lg hover:bg-green-200 transition text-fs-7 font-medium"                    onClick={() => updateProduct(product._id)}
                   >
                     <Edit size={18} className="mr-2" />
                     Edit
                   </button>
                   <button
-                    className="flex-1 flex items-center justify-center bg-red-100 text-red-600 py-2 rounded-lg hover:bg-red-200 transition"
+                    className="flex-1 flex items-center justify-center bg-red-100 text-red-600 py-2 rounded-lg hover:bg-red-200 transition text-fs-7 font-medium"
                     onClick={() => deleteProduct(product._id)}
                   >
                     <Trash2 size={18} className="mr-2" />

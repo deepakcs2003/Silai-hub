@@ -55,7 +55,7 @@ export const Header = () => {
         <Link to="/">
         <div className="flex items-center space-x-2">
           <img src={logo} alt="Guddi Silai Logo" className="h-10 w-auto" />
-          <div className="text-2xl font-bold text-deep-burgundy">GuddiSilai</div>
+          <div className=" font-heading text-fs-2 font-bold text-deep-burgundy">GuddiSilai</div>
         </div>
         </Link>
         
@@ -70,7 +70,7 @@ export const Header = () => {
               aria-label={item.name}
             >
               {item.icon}
-              <span>{item.name}</span>
+              <span className="font-body text-fs-6">{item.name}</span>
             </Link>
           ))}
 
@@ -94,7 +94,7 @@ export const Header = () => {
               className="flex items-center space-x-2 text-deep-burgundy hover:text-gold transition"
             >
               <Shield size={16} />
-              <span>Admin</span>
+              <span className="font-body text-fs-6">Admin</span>
             </Link>
           )}
 
@@ -106,17 +106,17 @@ export const Header = () => {
                 alt="Profile"
                 className="h-8 w-8 rounded-full"
               />
-              <span className="text-deep-burgundy">{user.name}</span>
+              <span className="font-body text-deep-burgundy text-fs-6">{user.name}</span>
               <button
                 onClick={handleLogout}
-                className="bg-gold text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition"
+                className="font-body text-fs-6 bg-gold text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition"
               >
                 Logout
               </button>
             </div>
           ) : (
             <Link to="/login-signup" onClick={handleMenuItemClick}>
-              <button className="bg-gold text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition">
+              <button className="font-body text-fs-6 bg-gold text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition">
                 Login / Sign Up
               </button>
             </Link>
@@ -137,7 +137,7 @@ export const Header = () => {
               />
               {cartItemCount > 0 && (
                 <span 
-                  className="absolute -top-2 -right-2 bg-red-500 text-white text-xs 
+                  className=" font-body text-fs-6 absolute -top-2 -right-2 bg-red-500 text-white  
                   rounded-full w-5 h-5 flex items-center justify-center"
                 >
                   {cartItemCount}
@@ -155,7 +155,7 @@ export const Header = () => {
                 className="h-8 w-8 rounded-full"
               />
             ) : (
-              <button className="bg-gold text-white p-2 rounded-full hover:bg-opacity-90 transition">
+              <button className="font-body text-fs-6 bg-gold text-white p-2 rounded-full hover:bg-opacity-90 transition">
                 <User size={24} />
               </button>
             )}
@@ -184,7 +184,7 @@ export const Header = () => {
               aria-label={item.name}
             >
               {item.icon}
-              <span>{item.name}</span>
+              <span className="font-body text-fs-6">{item.name}</span>
             </Link>
           ))}
 
@@ -195,7 +195,7 @@ export const Header = () => {
             className="block p-4 border-b border-gold flex items-center space-x-2 hover:bg-gold hover:text-deep-burgundy transition"
           >
             <ShoppingCart size={16} />
-            <span>Cart {cartItemCount > 0 && `(${cartItemCount})`}</span>
+            <span className="font-body text-fs-6">Cart {cartItemCount > 0 && `(${cartItemCount})`}</span>
           </Link>
 
           {/* Admin Button in Mobile */}
@@ -206,7 +206,7 @@ export const Header = () => {
               className="block p-4 border-b border-gold flex items-center space-x-2 hover:bg-gold hover:text-deep-burgundy transition"
             >
               <Shield size={16} />
-              <span>Admin</span>
+              <span  className="font-body text-fs-6">Admin</span>
             </Link>
           )}
 
@@ -218,17 +218,17 @@ export const Header = () => {
                 alt="Profile"
                 className="h-16 w-16 rounded-full"
               />
-              <span className="text-white mt-2">{user.name}</span>
+              <span className="font-body text-deep-burgundy text-fs-6 text-white mt-2">{user.name}</span>
               <button
                 onClick={handleLogout}
-                className="w-full bg-gold text-deep-burgundy p-4 rounded-b-lg hover:bg-opacity-90 transition"
+                className="font-body text-fs-6 bg-gold text-deep-burgundy p-4 rounded-b-lg hover:bg-opacity-90 transition"
               >
                 Logout
               </button>
             </div>
           ) : (
             <Link to="/login-signup" onClick={handleMenuItemClick}>
-              <button className="w-full bg-gold text-deep-burgundy p-4 rounded-b-lg hover:bg-opacity-90 transition">
+              <button className="font-body text-fs-6 bg-gold text-deep-burgundy p-4 rounded-b-lg hover:bg-opacity-90 transition">
                 Login / Sign Up
               </button>
             </Link>

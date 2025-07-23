@@ -1,5 +1,5 @@
 import React from 'react';
-
+ 
 const ReasonIcon = ({ children }) => (
   <div className="bg-accent/10 rounded-full p-4 inline-block">
     {children}
@@ -43,17 +43,22 @@ const WhyChooseUs = () => {
   return (
     <section className="container mx-auto py-16 px-4">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-brand-primary">Why Choose Us</h2>
-        <p className="text-neutral-600 mt-4">Crafting Perfection for Every Occasion</p>
+        <h2 className="text-fs-2 font-heading font-bold leading-tight tracking-wide text-deep-burgundy">Why Choose Us</h2>
+        <p className="text-fs-6 font-body leading-normal tracking-wide text-gray-700 mt-4">Crafting Perfection for Every Occasion</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-8">
         {reasons.map((reason, index) => (
           <div key={index} className="bg-neutral-50 p-6 rounded-lg shadow-md">
             <ReasonIcon>{reason.icon}</ReasonIcon>
-            <h3 className="text-xl font-semibold mt-4 text-primary">{reason.title}</h3>
-            <p className="text-neutral-600">{reason.description}</p>
-          </div>
+            <h3 className="text-fs-4 font-heading font-semibold leading-tight tracking-tight text-deep-burgundy mt-4">
+          {reason.title}
+          </h3>
+
+          <p className="text-fs-6 font-body leading-normal tracking-wide text-gray-700 mt-2">
+            {reason.description}
+          </p>
+        </div>
         ))}
       </div>
     </section>

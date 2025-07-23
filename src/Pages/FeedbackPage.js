@@ -5,7 +5,7 @@ import FeedBackForm from '../Components/FeedbackComponents/FeedBackForm';
 import FeedbackCard from '../Components/FeedbackComponents/FeedbackCard';
 import { toast } from 'react-toastify';
 import summaryApi from '../Common';
-
+ 
 const FeedbackPage = () => {
     const navigate = useNavigate();  // initialize navigate
     const { loading, allFeedback, fetchFeedback } = useContext(AppContext);
@@ -80,8 +80,8 @@ const FeedbackPage = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 py-8">
-            <h2 className="text-2xl font-bold mb-6 text-center text-blue-700">Submit or Edit Your Feedback</h2>
+        <div className="max-w-7xl font-body mx-auto px-4 py-8">
+            <h2 className="text-2xl text-fs-2 font-bold mb-6 text-center text-blue-700">Submit or Edit Your Feedback</h2>
 
             {/* Feedback Form */}
             <div className="bg-white rounded-xl shadow-md p-6 mb-8 border border-blue-100">
@@ -95,7 +95,7 @@ const FeedbackPage = () => {
                     <div className="text-right mt-2">
                         <button
                             onClick={handleEditCancel}
-                            className="text-sm text-red-500 hover:underline"
+                            className="text-sm text-fs-6 text-red-500 hover:underline"
                         >
                             Cancel Edit
                         </button>
@@ -104,7 +104,7 @@ const FeedbackPage = () => {
             </div>
 
             {/* USER FEEDBACK */}
-            <h2 className="text-xl font-semibold my-4 text-gray-800">Your Feedback</h2>
+            <h2 className="text-xl text-fs-2 font-semibold my-4 text-gray-800">Your Feedback</h2>
             {getUserFeedback.length ? (
                 <>
                     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -122,7 +122,7 @@ const FeedbackPage = () => {
                         <div className="mt-4 text-center">
                             <button
                                 onClick={() => setShowAllUserFeedback((prev) => prev + 6)}
-                                className="text-blue-600 hover:underline font-medium"
+                                className="text-blue-600 text-fs-6 font-body hover:underline font-medium"
                             >
                                 Show More
                             </button>
@@ -130,11 +130,11 @@ const FeedbackPage = () => {
                     )}
                 </>
             ) : (
-                <p className="text-gray-500">You have not submitted any feedback yet.</p>
+                <p className="text-gray-500 text-fs-6">You have not submitted any feedback yet.</p>
             )}
 
             {/* OTHERS' FEEDBACK */}
-            <h2 className="text-xl font-semibold my-6 text-gray-800">Feedback From Others</h2>
+            <h2 className="text-xl text-fs-2 font-body font-semibold my-6 text-gray-800">Feedback From Others</h2>
             {othersFeedback.length ? (
                 <>
                     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -150,7 +150,7 @@ const FeedbackPage = () => {
                         <div className="mt-4 text-center">
                             <button
                                 onClick={() => setShowAllFeedback((prev) => prev + 6)}
-                                className="text-blue-600 hover:underline font-medium"
+                                className="text-fs-6 text-blue-600 hover:underline font-medium"
                             >
                                 Show More
                             </button>
@@ -158,7 +158,7 @@ const FeedbackPage = () => {
                     )}
                 </>
             ) : (
-                <p className="text-gray-500">No feedback from other users yet.</p>
+                <p className="text-gray-500 text-fs-6">No feedback from other users yet.</p>
             )}
         </div>
     );

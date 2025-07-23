@@ -14,13 +14,13 @@ const CommonContactCart = () => {
          <div className="contact-section bg-white shadow-md rounded-lg p-4 max-w-md mx-auto my-4 flex flex-col items-center space-y-4">
         <div className="flex items-center justify-center space-x-4">
           <Smartphone className="text-blue-500" size={32} />
-          <h2 className="text-xl font-semibold text-gray-800">Contact Us</h2>
+          <h2 className="text-fs-3 font-heading font-semibold text-gray-800">Contact Us</h2>
         </div>
 
         <div className="flex flex-col items-center text-center">
-          <p className="text-gray-600 mb-2">Need help? Reach out to us directly</p>
+          <p className="text-fs-6 font-body text-gray-600 mb-2">Need help? Reach out to us directly</p>
           <div className="flex items-center space-x-3">
-            <span className="text-lg font-medium text-gray-700">{phoneNumber}</span>
+            <span className="text-fs-5 font-medium text-gray-700">{phoneNumber}</span>
           </div>
         </div>
 
@@ -50,4 +50,4 @@ const CommonContactCart = () => {
   )
 }
 
-export default CommonContactCart
+export default CommonContactCart;

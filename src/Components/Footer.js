@@ -18,12 +18,12 @@ export const Footer = () => {
           <div className="text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start space-x-3 mb-4">
               <Scissors className="text-pink-500" size={36} />
-              <h2 className="text-3xl font-bold text-gray-800">Guddi Silai</h2>
+              <h2 className="font-heading text-fs-2 font-bold text-gray-800">Guddi Silai</h2>
             </div>
-            <p className="text-gray-600 mb-6 max-w-xs mx-auto md:mx-0">
+            <p className="font-body text-fs-6 text-gray-600 mb-6 max-w-xs mx-auto md:mx-0">
               Crafting the perfect fit for every occasion, with passion and precision.
             </p>
-            <div className="space-y-3 text-gray-600">
+            <div className="space-y-3 font-body text-fs-6 text-gray-600">
               <div className="flex items-center justify-center md:justify-start space-x-3">
                 <Mail className="text-pink-500" size={20} />
                 <p>contact@guddisilai.com</p>
@@ -41,8 +41,8 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div className="text-center">
-            <h3 className="text-2xl font-semibold text-gray-800 mb-6">Quick Links</h3>
-            <ul className="space-y-4">
+            <h3 className="font-heading text-fs-3 font-semibold text-gray-800 mb-6">Quick Links</h3>
+             <ul className="space-y-4 font-body text-fs-6">
               {[
                 { href: "#about", label: "About Us" },
                 { href: "#services", label: "Services" },
@@ -63,7 +63,7 @@ export const Footer = () => {
 
           {/* Social Media Links */}
           <div className="text-center">
-            <h3 className="text-2xl font-semibold text-gray-800 mb-6">Connect With Us</h3>
+            <h3 className="font-heading text-fs-3 font-semibold text-gray-800 mb-6">Connect With Us</h3>
             <div className="flex justify-center space-x-6">
               {[
                 { 
@@ -93,7 +93,7 @@ export const Footer = () => {
                 </a>
               ))}
             </div>
-            <div className="mt-6 text-gray-600">
+            <div className="mt-6 font-body text-fs-6 text-gray-600">
               <p>Follow our creative journey!</p>
             </div>
           </div>
@@ -103,8 +103,8 @@ export const Footer = () => {
         <div className="border-t border-gray-200 my-8"></div>
 
         {/* Copyright */}
-        <div className="text-center text-gray-600">
-          <p>
+         <div className="text-center font-body text-fs-7 text-gray-600">
+          <p className="font-body text-fs-7">
             &copy; {new Date().getFullYear()} Guddi Silai. 
             <span className="ml-2 hidden md:inline">
               Tailoring Dreams, Stitch by Stitch.

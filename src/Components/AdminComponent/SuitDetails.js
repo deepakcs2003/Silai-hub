@@ -1,5 +1,5 @@
 import React from 'react';
-
+ 
 export const SuitDetails = ({ formData, setformdata }) => {
     // Handles nested input changes for Suit
     const handleNestedInputChange = (section, event) => {
@@ -16,12 +16,15 @@ export const SuitDetails = ({ formData, setformdata }) => {
     return (
       <div className="space-y-6">
         <div className="bg-white p-6 rounded-lg shadow-lg">
-          <label className="text-lg font-semibold text-gray-800 mb-4">Suit Details</label>
-  
+         <label className="text-fs-4 font-heading font-semibold mb-4 block">
+          Suit Details
+        </label>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">Fabric Type</label>
-              <select
+              <label className="block text-fs-7 text-deep-burgundy font-medium">
+                Fabric Type
+              </label>
+            <select
                 name="fabricType"
                 value={formData.suitDetails.fabricType || ''}
                 onChange={(e) => handleNestedInputChange('suitDetails', e)}
@@ -36,8 +39,10 @@ export const SuitDetails = ({ formData, setformdata }) => {
             </div>
   
             <div>
-              <label className="block text-sm font-medium text-gray-700">Suit Style</label>
-              <select
+               <label className="block text-fs-7 text-deep-burgundy font-medium">
+              Suit Style
+            </label>
+            <select
                 name="suitStyle"
                 value={formData.suitDetails.suitStyle || ''}
                 onChange={(e) => handleNestedInputChange('suitDetails', e)}
@@ -52,8 +57,10 @@ export const SuitDetails = ({ formData, setformdata }) => {
             </div>
   
             <div>
-              <label className="block text-sm font-medium text-gray-700">Neckline Style</label>
-              <input
+              <label className="block text-fs-7 text-deep-burgundy font-medium">
+              Neckline Style
+            </label>
+             <input
                 type="text"
                 name="necklineStyle"
                 value={formData.suitDetails.necklineStyle || ''}
@@ -63,8 +70,10 @@ export const SuitDetails = ({ formData, setformdata }) => {
             </div>
   
             <div>
-              <label className="block text-sm font-medium text-gray-700">Fit Type</label>
-              <select
+              <label className="block text-fs-7 text-deep-burgundy font-medium">
+              Fit Type
+            </label>
+             <select
                 name="fitType"
                 value={formData.suitDetails.fitType || ''}
                 onChange={(e) => handleNestedInputChange('suitDetails', e)}
@@ -77,7 +86,9 @@ export const SuitDetails = ({ formData, setformdata }) => {
             </div>
   
             <div>
-              <label className="block text-sm font-medium text-gray-700">Embellishments</label>
+              <label className="block text-fs-7 text-deep-burgundy font-medium">
+              Embellishments
+            </label>
               <input
                 type="text"
                 name="embellishments"
@@ -96,8 +107,8 @@ export const SuitDetails = ({ formData, setformdata }) => {
                   onChange={(e) => handleNestedInputChange('suitDetails', e)}
                   className="w-4 h-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
                 />
-                <label className="text-sm text-gray-700">Lining</label>
-              </div>
+               <label className="text-fs-7 text-deep-burgundy">Lining</label>
+             </div>
   
               <div className="flex items-center space-x-2">
                 <input
@@ -107,8 +118,8 @@ export const SuitDetails = ({ formData, setformdata }) => {
                   onChange={(e) => handleNestedInputChange('suitDetails', e)}
                   className="w-4 h-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
                 />
-                <label className="text-sm text-gray-700">Padding</label>
-              </div>
+                <label className="text-fs-7 text-deep-burgundy">Padding</label>
+            </div>
             </div>
           </div>
         </div>

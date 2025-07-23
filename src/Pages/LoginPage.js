@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import summaryApi from '../Common';
-
+ 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -63,7 +63,7 @@ const LoginPage = () => {
 
   return (
     <div 
-      className="min-h-screen flex items-center justify-center px-4 py-8" 
+      className="min-h-screen flex items-center  fontg-body justify-center px-4 py-8" 
       style={{background: 'linear-gradient(135deg, #d6e6ff 0%, #d7f9f8 25%, #ffffea 50%, #fff0d4 75%, #fbe0e0 100%)'}}
     >
       <div className="w-full max-w-md">

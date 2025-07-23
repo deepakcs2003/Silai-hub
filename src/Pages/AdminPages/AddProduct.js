@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
+import { 
     availabilityStatuses,
     color,
     categories,
@@ -253,7 +253,9 @@ const ProductForm = () => {
             className="max-w-4xl mx-auto bg-slate-100 p-6 mb-10 shadow-md rounded-lg space-y-6"
         >
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+                <label className="block font-body text-fs-7 tracking-wide leading-tight text-deep-burgundy mb-1">
+                                Product Name
+                </label>
                 <input
                     type="text"
                     name="productName"
@@ -266,7 +268,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                 <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Category
+                </label>
                 <select
                     name="category"
                     value={formData.category}
@@ -309,7 +313,9 @@ const ProductForm = () => {
             )}
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Description
+                </label>
                 <textarea
                     name="description"
                     value={formData.description}
@@ -321,7 +327,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Product Type</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Product Type
+                </label>
                 <select
                     name="productType"
                     value={formData.productType}
@@ -337,7 +345,7 @@ const ProductForm = () => {
             </div>
 
             <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                 <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-2">
                     Product Type
                 </label>
                 <select
@@ -354,7 +362,9 @@ const ProductForm = () => {
                 </select>
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">tailor Price</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Tailor Price
+                </label>
                 <input
                     type="number"
                     name="tailorPrice"
@@ -365,7 +375,9 @@ const ProductForm = () => {
                 />
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Ready-made Price</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Ready-made Price
+                </label>
                 <input
                     type="number"
                     name="readyMadePrice"
@@ -377,7 +389,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Discount</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Discount
+                </label>
                 <input
                     type="number"
                     name="discount"
@@ -389,7 +403,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Quantity in Stock</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Quantity in Stock
+                </label>
                 <input
                     type="number"
                     name="quantityInStock"
@@ -402,7 +418,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Fabric Type</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Fabric Type
+                </label>
                 <select
                     name="fabricType"
                     value={formData.fabricType}
@@ -420,7 +438,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Stitching Type</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Stitching Type
+                </label>
                 <select
                     name="stitchingType"
                     value={formData.stitchingType}
@@ -439,7 +459,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Pattern</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Pattern
+                </label>
                 <select
                     name="pattern"
                     value={formData.pattern}
@@ -455,7 +477,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Embellishments</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Embellishments
+                </label>
                 <select
                     multiple
                     name="embellishments"
@@ -473,7 +497,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Customization Available</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Customization Available
+                </label>
                 <input
                     type="checkbox"
                     name="customizationAvailable"
@@ -495,7 +521,9 @@ const ProductForm = () => {
 
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Video</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Video
+                </label>
                 <input
                     type="text"
                     name="video"
@@ -507,7 +535,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Shipping Cost</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Shipping Cost
+                </label>
                 <input
                     type="number"
                     name="shippingCost"
@@ -520,7 +550,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Estimated Delivery Time</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Estimated Delivery Time
+                </label>
                 <input
                     type="text"
                     name="estimatedDeliveryTime"
@@ -532,7 +564,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Availability Status</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Availability Status
+                </label>
                 <select
                     name="availabilityStatus"
                     value={formData.availabilityStatus}
@@ -549,8 +583,10 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Featured Product</label>
-                <input
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Featured Product
+                </label>
+                 <input
                     type="checkbox"
                     name="featuredProduct"
                     checked={formData.featuredProduct}
@@ -565,7 +601,9 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Seasonal Tags</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Seasonal Tags
+                </label>
                 <input
                     type="text"
                     name="seasonalTags"
@@ -576,7 +614,9 @@ const ProductForm = () => {
                 />
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Tags</label>
+                <label className="block text-fs-7 font-body text-deep-burgundy tracking-wide mb-1">
+                    Tags
+                </label>
                 <input
                     type="text"
                     name="tags"
@@ -589,7 +629,8 @@ const ProductForm = () => {
             <div>
                 <button
                     type="submit"
-                    className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg shadow hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500"
+                    className="w-full bg-deep-burgundy text-white py-2 px-4 rounded-lg shadow hover:bg-gold hover:text-deep-burgundy transition-colors duration-200 focus:ring-2 focus:ring-gold"
+  
                 >Submit</button>
             </div>
         </form>

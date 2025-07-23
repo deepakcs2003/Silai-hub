@@ -7,7 +7,7 @@ import { AppContext } from '../App';
 import FeedbackCard from '../Components/FeedbackComponents/FeedbackCard';
 import { useNavigate } from 'react-router-dom';
 import { Smile } from "lucide-react";
-
+ 
 const Home = () => {
   const { allFeedback } = useContext(AppContext);
   const [visibleCount, setVisibleCount] = useState(12);
@@ -86,7 +86,7 @@ const Home = () => {
 
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen font-body"
       style={{
         background: 'linear-gradient(135deg, #d6e6ff 0%, #d7f9f8 20%, #ffffea 40%, #fff0d4 60%, #fbe0e0 80%, #e5d4ef 100%)'
       }}
@@ -96,10 +96,10 @@ const Home = () => {
         <div className="mx-auto">
           {/* Hero Header */}
           <div className="text-center mb-4 md:mb-4">
-            <h1 className="text-3xl md:text-5xl font-bold text-black mb-4">
+            <h1 className="text-3xl text-fs-1 font-heading md:text-5xl font-bold text-black mb-4">
               Premium Design Collection
             </h1>
-            <p className="text-black text-lg md:text-xl max-w-2xl mx-auto">
+            <p className="text-black text-lg text-fs-6 font-body md:text-xl max-w-2xl mx-auto">
               Discover amazing designs crafted with passion and precision
             </p>
           </div>
@@ -113,13 +113,13 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row mt-4 gap-4 px-4 justify-center items-center">
             <button
               onClick={handleCustomDesign}
-              className="w-full sm:w-auto bg-white text-purple-600 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center"
+              className="w-full sm:w-auto text-fs-6 font-body bg-white text-purple-600 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center"
             >
               💬 Get Custom Design
             </button>
             <button
               onClick={handleFeedback}
-              className="w-full sm:w-auto bg-white text-purple-600 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center"
+              className="w-full sm:w-auto bg-white text-fs-6 font-body text-purple-600 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center"
             >
               😄 Give Feedback
             </button>
@@ -131,12 +131,12 @@ const Home = () => {
       {visibleFeedback.length > 0 && (
         <section className="px-4">
           {/* Section Header */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 text-fs-6 font-body">
             <h2 className="text-3xl md:text-5xl font-bold text-black mb-4">
               🎨 All Products
             </h2>
             <div className="w-24 h-1 bg-purple-600 mx-auto rounded-full mb-4"></div>
-            <p className="text-gray-700 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-700 text-lg max-w-2xl mx-auto text-fs-6 font-body">
               Discover our complete collection of amazing designs
             </p>
           </div>
@@ -161,7 +161,7 @@ const Home = () => {
                   <span className="text-purple-600 font-medium">Loading more amazing designs...</span>
                 </div>
               ) : (
-                <div className="text-purple-600 font-medium opacity-50">
+                <div className="text-purple-600 font-medium opacity-50 text-fs-6 font-body">
                   Scroll down to discover more designs
                 </div>
               )}
@@ -171,7 +171,7 @@ const Home = () => {
           {/* End of content indicator */}
           {visibleCount >= sortedFeedback.length && sortedFeedback.length > 12 && (
             <div className="text-center py-8">
-              <div className="text-gray-600 font-medium">
+              <div className="text-gray-600 font-medium text-fs-6 font-body">
                 🎉 You've explored our entire collection!
               </div>
             </div>

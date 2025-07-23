@@ -1,5 +1,5 @@
 import React from 'react';
-
+  
 const StarRating = ({ rating }) => {
   return (
     <div className="flex text-yellow-500">
@@ -47,8 +47,8 @@ const Testimonials = () => {
     <section className="bg-background py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-brand-primary">Customer Testimonials</h2>
-          <p className="text-neutral-600 mt-4">What Our Clients Say</p>
+          <h2 className=" text-fs-2 font-heading text-3xl font-bold text-brand-primary">Customer Testimonials</h2>
+          <p className="text-fs-6 font-body text-neutral-600 mt-4">What Our Clients Say</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -64,11 +64,11 @@ const Testimonials = () => {
                   className="w-16 h-16 rounded-full mr-4 object-cover"
                 />
                 <div>
-                  <h3 className="text-xl font-semibold text-primary">{testimonial.name}</h3>
+                  <h3 className="text-fs-5 font-heading  font-semibold text-primary">{testimonial.name}</h3>
                   <StarRating rating={testimonial.rating} />
                 </div>
               </div>
-              <p className="text-neutral-600 italic">"{testimonial.review}"</p>
+              <p className="text-fs-6 font-body text-neutral-600 italic">"{testimonial.review}"</p>
             </div>
           ))}
         </div>

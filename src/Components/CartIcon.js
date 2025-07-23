@@ -9,7 +9,7 @@ const PromoBanner = () => {
         <Link 
           to="/order/null/custom" 
           className="flex items-center justify-center space-x-2 
-                     text-sm sm:text-base md:text-lg 
+                     text-sm sm:text-base md:text-lg font-heading
                      font-medium hover:text-indigo-100 
                      transition-colors duration-300 
                      group"

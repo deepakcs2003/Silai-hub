@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import uploadMedia from "../../Common/uploadMedia"; // Cloudinary uploader
-
+ 
 const ImageUploader = ({ formData, setFormData }) => {
   const [loading, setLoading] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
@@ -119,7 +119,7 @@ const ImageUploader = ({ formData, setFormData }) => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full font-body text-fs-6 leading-normal tracking-wide">
       {/* Drag and Drop Upload Area */}
       <div
         ref={containerRef}
@@ -145,12 +145,12 @@ const ImageUploader = ({ formData, setFormData }) => {
           ref={fileInputRef}
         />
         
-        <div className="text-4xl text-gray-400 mb-2">📁</div>
-        <p className="text-sm text-gray-700 mb-1">
-          {isDragOver ? "Drop images here" : "Click / Drag & Drop / Paste to upload"}
+        <div className="text-fs-2 text-gray-400 mb-2">📁</div>
+        <p className="text-fs-6 text-gray-700 mb-1">
+              {isDragOver ? "Drop images here" : "Click / Drag & Drop / Paste to upload"}
         </p>
-        <p className="text-xs text-gray-500">Supports multiple images</p>
-        
+        <p className="text-fs-7 text-gray-500">Supports multiple images</p>
+
         {loading && (
           <div className="mt-2 text-blue-600 text-sm">Uploading... please wait</div>
         )}
@@ -159,12 +159,15 @@ const ImageUploader = ({ formData, setFormData }) => {
       {/* Image Previews - Outside the drag and drop area */}
       {formData.images && formData.images.length > 0 && (
         <div className="mt-6">
-          <h3 className="text-sm font-medium text-gray-700 mb-3">
-            Uploaded Images ({formData.images.length})
-          </h3>
+           <h3 className="text-fs-6 font-medium text-gray-700 mb-3">
+              Uploaded Images ({formData.images.length})
+           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {formData.images.map((img, index) => (
-              <div key={index} className="relative border rounded-lg overflow-hidden h-32 w-full group">
+               <div
+            key={index}
+            className="relative border border-gray-300 rounded-2xl overflow-hidden h-32 w-full group"
+          >
                 <img
                   src={img.url}
                   alt={`uploaded-${index}`}
