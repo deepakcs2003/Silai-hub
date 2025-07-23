@@ -43,7 +43,7 @@ const CartItemCard = ({ item, onUpdateCart, onDeleteItem }) => {
   const [isLiked, setIsLiked] = useState(false);
 
   const handleCardClick = () => {
-    navigate(`/single_product_details?productId=${item.productId}`);
+    navigate(`/product/${item.productId}`);
   };
 
   const handleHeartClick = (e) => {
