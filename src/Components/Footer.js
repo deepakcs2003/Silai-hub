@@ -44,10 +44,10 @@ export const Footer = () => {
             <h3 className="text-2xl font-semibold text-gray-800 mb-6">Quick Links</h3>
             <ul className="space-y-4">
               {[
-                { href: "#about", label: "About Us" },
+                { href: "/about", label: "About Us" },
                 { href: "#services", label: "Services" },
                 { href: "#portfolio", label: "Portfolio" },
-                { href: "#contact", label: "Contact" }
+                { href: "/contact", label: "Contact" }
               ].map((link) => (
                 <li key={link.href}>
                   <a 

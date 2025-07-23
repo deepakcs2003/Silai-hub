@@ -49,7 +49,7 @@ export const Header = () => {
   };
 
   return (
-    <nav className="bg-off-white text-deep-burgundy shadow-md">
+    <nav className="bg-off-white text-deep-burgundy shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo */}
         <Link to="/">
