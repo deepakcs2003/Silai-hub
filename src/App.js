@@ -6,7 +6,7 @@ import { Footer } from './Components/Footer';
 import { Outlet } from 'react-router-dom';
 import summaryApi from './Common';
 import axios from 'axios';
-
+import ScrollToTop from './Components/scrollToTop'; //imported the scroll to top component
 export const AppContext = createContext({
   cartData: null,
   loading: false,
@@ -197,6 +197,7 @@ function App() {
         <ToastContainer />
         <Header />
         <main className="flex-grow overflow-hidden">
+          <ScrollToTop />
           <Outlet />
         </main>
         <Footer />

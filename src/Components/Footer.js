@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import { 
   Instagram, 
   Facebook, 
@@ -42,23 +43,23 @@ export const Footer = () => {
           {/* Quick Links */}
           <div className="text-center">
             <h3 className="text-2xl font-semibold text-gray-800 mb-6">Quick Links</h3>
-            <ul className="space-y-4">
-              {[
-                { href: "#about", label: "About Us" },
-                { href: "#services", label: "Services" },
-                { href: "#portfolio", label: "Portfolio" },
-                { href: "#contact", label: "Contact" }
-              ].map((link) => (
-                <li key={link.href}>
-                  <a 
-                    href={link.href} 
-                    className="text-gray-600 hover:text-pink-500 transition-colors duration-300"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+                <ul className="space-y-4">
+                  {[
+                    { to: "/about", label: "About Us" },
+                    { to: "/gallery", label: "Services" },        
+                    { to: "/feedback", label: "Feedback" },      
+                    { to: "/contact", label: "Contact" }
+                  ].map((link) => (
+                    <li key={link.to}>
+                      <Link 
+                        to={link.to} 
+                        className="text-gray-600 hover:text-pink-500 transition-colors duration-300"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
           </div>
 
           {/* Social Media Links */}
