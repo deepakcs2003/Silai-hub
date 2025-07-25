@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { Scissors, Award, Clock, Image as ImageIcon } from 'lucide-react';
+import React, { useState, Suspense, lazy } from 'react';
+const Scissors = lazy(() => import('lucide-react').then(mod => ({ default: mod.Scissors })));
+const Award = lazy(() => import('lucide-react').then(mod => ({ default: mod.Award })));
+const Clock = lazy(() => import('lucide-react').then(mod => ({ default: mod.Clock })));
+const ImageIcon = lazy(() => import('lucide-react').then(mod => ({ default: mod.Image })));
 
 // Import your images (assuming the import paths are correct)
 import w1 from '../Assist/workProcessImages/w1.jpg'
@@ -28,7 +31,9 @@ const AboutUsPage = () => {
       <section className="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center">
         <div className="space-y-6">
           <div className="flex items-center space-x-4">
-            <Scissors className="text-pink-500" size={48} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Scissors className="text-pink-500" size={48} />
+            </Suspense>
             <h1 className="text-4xl font-bold text-gray-800">
               Our Stitching Journey
             </h1>
@@ -72,7 +77,9 @@ const AboutUsPage = () => {
       {/* Our Workshop Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="flex items-center justify-center space-x-4 mb-12">
-          <ImageIcon className="text-pink-500" size={48} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <ImageIcon className="text-pink-500" size={48} />
+          </Suspense>
           <h2 className="text-4xl font-bold text-gray-800">
             Our Workshop
           </h2>
@@ -106,7 +113,9 @@ const AboutUsPage = () => {
       <section className="bg-white py-16 shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center space-x-4 mb-12">
-            <Clock className="text-purple-500" size={48} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Clock className="text-purple-500" size={48} />
+            </Suspense>
             <h2 className="text-4xl font-bold text-gray-800">
               Our Achievements
             </h2>
@@ -114,17 +123,17 @@ const AboutUsPage = () => {
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
             {[
               { 
-                icon: <Scissors className="text-pink-500 mx-auto mb-4" size={48} />,
+                icon: <Suspense fallback={<div>Loading...</div>}><Scissors className="text-pink-500 mx-auto mb-4" size={48} /></Suspense>,
                 title: "10+ Years",
                 subtitle: "Of Tailoring Experience"
               },
               { 
-                icon: <Award className="text-purple-500 mx-auto mb-4" size={48} />,
+                icon: <Suspense fallback={<div>Loading...</div>}><Award className="text-purple-500 mx-auto mb-4" size={48} /></Suspense>,
                 title: "5000+ Blouses",
                 subtitle: "Best Tailoring Service"
               },
               { 
-                icon: <ImageIcon className="text-blue-500 mx-auto mb-4" size={48} />,
+                icon: <Suspense fallback={<div>Loading...</div>}><ImageIcon className="text-blue-500 mx-auto mb-4" size={48} /></Suspense>,
                 title: "150+ Unique Designs",
                 subtitle: "Professional Tailoring"
               }

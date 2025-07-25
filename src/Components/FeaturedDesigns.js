@@ -1,8 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, memo } from 'react';
 import { AppContext } from '../App';
-import Card from './Card';
+import { lazy, Suspense } from 'react';
 
-const AllProducts = () => {
+const Card = lazy(() => import('./Card'));
+
+const FeaturedDesigns = memo(function FeaturedDesigns() {
   const { allProduct, getAllProduct, addToCart } = useContext(AppContext);
   const [showFeatured, setShowFeatured] = useState(true);
 
@@ -46,7 +48,9 @@ const AllProducts = () => {
 
         {/* Products Grid Container with proper spacing */}
         <div className="mb-8">
-          <Card products={displayedProducts} addToCart={addToCart} />
+          <Suspense fallback={<div className="animate-pulse">Loading...</div>}>
+            <Card products={displayedProducts} addToCart={addToCart} />
+          </Suspense>
         </div>
 
         {/* Products Counter */}
@@ -84,6 +88,6 @@ const AllProducts = () => {
       </div>
     </div>
   );
-};
+});
 
-export default AllProducts;
+export default FeaturedDesigns;

@@ -1,28 +1,34 @@
 import React, { useCallback } from 'react';
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Home, 
-  Building2, 
-  Tag, 
-  AlertCircle
-} from 'lucide-react';
+import dynamic from 'next/dynamic';
 
-// Move InputWithIcon outside to prevent recreation
-const InputWithIcon = ({ icon: Icon, ...props }) => (
-  <div className="relative">
-    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-      <Icon className="h-5 w-5 text-gray-400" />
+// Dynamically import icons
+const icons = {
+  User: dynamic(() => import('lucide-react').then(mod => mod.User)),
+  Mail: dynamic(() => import('lucide-react').then(mod => mod.Mail)),
+  Phone: dynamic(() => import('lucide-react').then(mod => mod.Phone)),
+  MapPin: dynamic(() => import('lucide-react').then(mod => mod.MapPin)),
+  Home: dynamic(() => import('lucide-react').then(mod => mod.Home)),
+  Building2: dynamic(() => import('lucide-react').then(mod => mod.Building2)),
+  Tag: dynamic(() => import('lucide-react').then(mod => mod.Tag)),
+  AlertCircle: dynamic(() => import('lucide-react').then(mod => mod.AlertCircle))
+};
+
+// Memoized InputWithIcon component to prevent recreation
+const InputWithIcon = React.memo(({ icon: IconName, ...props }) => {
+  const Icon = icons[IconName];
+  return (
+    <div className="relative">
+      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <Icon className="h-5 w-5 text-gray-400" />
+      </div>
+      <input
+        {...props}
+        className="pl-10 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                   focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+      />
     </div>
-    <input
-      {...props}
-      className="pl-10 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
-                 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-    />
-  </div>
-);
+  );
+});
 
 const CustomerDetails = ({ orderData, setOrderData }) => {
   // Use useCallback to prevent function recreation on every render
@@ -60,12 +66,12 @@ const CustomerDetails = ({ orderData, setOrderData }) => {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white">
       <h2 className="text-2xl font-bold mb-6 text-gray-800 flex items-center">
-        <User className="mr-3 text-blue-600" />
+        {React.createElement(icons.User, { className: "mr-3 text-blue-600" })}
         Customer Details
       </h2>
       <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
         <div className="flex items-center">
-          <AlertCircle className="w-5 h-5 text-blue-600 mr-3" />
+          {React.createElement(icons.AlertCircle, { className: "w-5 h-5 text-blue-600 mr-3" })}
           <p className="text-blue-800 font-medium">
             Please complete all required fields to proceed with your order
           </p>
@@ -115,7 +121,7 @@ const CustomerDetails = ({ orderData, setOrderData }) => {
             Phone Number
           </label>
           <InputWithIcon
-            icon={Phone}
+            icon="Phone"
             type="tel"
             id="phone"
             name="phone"
@@ -129,7 +135,7 @@ const CustomerDetails = ({ orderData, setOrderData }) => {
         {/* Address Section */}
         <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
           <h3 className="text-lg font-semibold mb-4 text-gray-700 flex items-center">
-            <MapPin className="mr-2 text-blue-600" />
+            {React.createElement(icons.MapPin, { className: "mr-2 text-blue-600" })}
             Shipping Address
           </h3>
 
@@ -140,7 +146,7 @@ const CustomerDetails = ({ orderData, setOrderData }) => {
                 Street Address
               </label>
               <InputWithIcon
-                icon={Home}
+                icon="Home"
                 type="text"
                 id="street"
                 name="address.street"
@@ -156,7 +162,7 @@ const CustomerDetails = ({ orderData, setOrderData }) => {
                 City
               </label>
               <InputWithIcon
-                icon={Building2}
+                icon="Building2"
                 type="text"
                 id="city"
                 name="address.city"
@@ -172,7 +178,7 @@ const CustomerDetails = ({ orderData, setOrderData }) => {
                 State
               </label>
               <InputWithIcon
-                icon={Building2}
+                icon="Building2"
                 type="text"
                 id="state"
                 name="address.state"
@@ -188,7 +194,7 @@ const CustomerDetails = ({ orderData, setOrderData }) => {
                 Pincode
               </label>
               <InputWithIcon
-                icon={Tag}
+                icon="Tag"
                 type="text"
                 id="pincode"
                 name="address.pincode"

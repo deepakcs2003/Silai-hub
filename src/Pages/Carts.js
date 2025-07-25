@@ -4,7 +4,12 @@ import { AppContext } from '../App';
 import summaryApi from '../Common';
 import CommonContactCart from '../Components/CommonContactCart';
 import CartItemSkeleton from '../Components/Skeleton/CartItemSkeleton';
-import { Heart, Trash2, Plus, Minus, ShoppingBag } from 'lucide-react';
+import { Suspense, lazy } from 'react';
+const Heart = lazy(() => import('lucide-react').then(mod => ({ default: mod.Heart })));
+const Trash2 = lazy(() => import('lucide-react').then(mod => ({ default: mod.Trash2 })));
+const Plus = lazy(() => import('lucide-react').then(mod => ({ default: mod.Plus })));
+const Minus = lazy(() => import('lucide-react').then(mod => ({ default: mod.Minus })));
+const ShoppingBag = lazy(() => import('lucide-react').then(mod => ({ default: mod.ShoppingBag })));
 
 const CartMessage = ({ type }) => {
   const config = {
@@ -77,7 +82,9 @@ const CartItemCard = ({ item, onUpdateCart, onDeleteItem }) => {
             className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-lg transition-colors"
             style={{ color: isLiked ? '#dc2626' : '#6b7280' }}
           >
-            <Heart size={20} fill={isLiked ? 'currentColor' : 'none'} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Heart size={20} fill={isLiked ? 'currentColor' : 'none'} />
+            </Suspense>
           </button>
           {item.discount > 0 && (
             <div className="absolute top-3 left-3 px-3 py-1 bg-green-600 text-white rounded-full text-sm font-bold">
@@ -103,7 +110,9 @@ const CartItemCard = ({ item, onUpdateCart, onDeleteItem }) => {
               onClick={handleDeleteClick}
               className="p-2 hover:bg-red-50 rounded-full text-red-600 transition-colors"
             >
-              <Trash2 size={20} />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Trash2 size={20} />
+              </Suspense>
             </button>
           </div>
 
@@ -129,14 +138,18 @@ const CartItemCard = ({ item, onUpdateCart, onDeleteItem }) => {
                 onClick={(e) => handleQuantityChange(e, 'decrease')}
                 className="w-12 h-12 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 hover:scale-110 transition-all"
               >
-                <Minus size={20} />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Minus size={20} />
+                </Suspense>
               </button>
               <span className="text-2xl font-bold px-4 py-2 rounded-xl bg-gray-100 min-w-[3rem] text-center">{item.quantity}</span>
               <button
                 onClick={(e) => handleQuantityChange(e, 'increase')}
                 className="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 hover:scale-110 transition-all"
               >
-                <Plus size={20} />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Plus size={20} />
+                </Suspense>
               </button>
             </div>
           </div>
@@ -292,7 +305,9 @@ const Carts = () => {
 
         {cartData.cartItems.length === 0 ? (
           <div className="text-center py-16 rounded-3xl shadow-lg" style={{ backgroundColor: '#d6e6ff' }}>
-            <ShoppingBag size={80} className="mx-auto mb-6 text-gray-500" />
+            <Suspense fallback={<div>Loading...</div>}>
+              <ShoppingBag size={80} className="mx-auto mb-6 text-gray-500" />
+            </Suspense>
             <p className="text-xl text-gray-600">Your cart is empty</p>
           </div>
         ) : (

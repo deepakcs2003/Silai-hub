@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export const AdminPage = () => {
+const AdminPage = () => {
   const [visitorCount, setVisitorCount] = useState(0);
   const [dashboardData, setDashboardData] = useState({
     totalProducts: 100,
@@ -115,3 +115,5 @@ export const AdminPage = () => {
     </div>
   );
 };
+
+export default AdminPage;

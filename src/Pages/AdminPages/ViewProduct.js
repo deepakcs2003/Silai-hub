@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import summaryApi from '../../Common';
-import { Edit, Trash2, Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+
+const IconComponents = lazy(() => import('lucide-react').then(mod => ({
+  default: {
+    Edit: mod.Edit,
+    Trash2: mod.Trash2,
+    Eye: mod.Eye
+  }
+})));
 
 const ViewProduct = () => {
   const [responseData, setResponseData] = useState([]);
@@ -137,21 +143,27 @@ const ViewProduct = () => {
                     className="flex-1 flex items-center justify-center bg-blue-100 text-blue-600 py-2 rounded-lg hover:bg-blue-200 transition"
                     onClick={() => productDetails(product._id)}
                   >
-                    <Eye size={18} className="mr-2" />
+                    <Suspense fallback={<div className="w-4 h-4"/>}>
+                      <IconComponents.Eye size={18} className="mr-2" />
+                    </Suspense>
                     View
                   </button>
                   <button
                     className="flex-1 flex items-center justify-center bg-green-100 text-green-600 py-2 rounded-lg hover:bg-green-200 transition"
                     onClick={() => updateProduct(product._id)}
                   >
-                    <Edit size={18} className="mr-2" />
+                    <Suspense fallback={<div className="w-4 h-4"/>}>
+                      <IconComponents.Edit size={18} className="mr-2" />
+                    </Suspense>
                     Edit
                   </button>
                   <button
                     className="flex-1 flex items-center justify-center bg-red-100 text-red-600 py-2 rounded-lg hover:bg-red-200 transition"
                     onClick={() => deleteProduct(product._id)}
                   >
-                    <Trash2 size={18} className="mr-2" />
+                    <Suspense fallback={<div className="w-4 h-4"/>}>
+                      <IconComponents.Trash2 size={18} className="mr-2" />
+                    </Suspense>
                     Delete
                   </button>
                 </div>

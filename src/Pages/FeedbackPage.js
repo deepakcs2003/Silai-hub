@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // import useNavigate
 import { AppContext } from '../App';
-import FeedBackForm from '../Components/FeedbackComponents/FeedBackForm';
-import FeedbackCard from '../Components/FeedbackComponents/FeedbackCard';
+import { Suspense, lazy } from 'react';
+const FeedBackForm = lazy(() => import('../Components/FeedbackComponents/FeedBackForm'));
+const FeedbackCard = lazy(() => import('../Components/FeedbackComponents/FeedbackCard'));
 import { toast } from 'react-toastify';
 import summaryApi from '../Common';
 
@@ -85,12 +86,14 @@ const FeedbackPage = () => {
 
             {/* Feedback Form */}
             <div className="bg-white rounded-xl shadow-md p-6 mb-8 border border-blue-100">
-                <FeedBackForm
-                    feedback={editingFeedback}
-                    onSuccess={handleFormSuccess}
-                    buttonLabel={isEditing ? "Update Feedback" : "Submit Feedback"}
-                    isEdit={isEditing}
-                />
+                <Suspense fallback={<div>Loading form...</div>}>
+                    <FeedBackForm
+                        feedback={editingFeedback}
+                        onSuccess={handleFormSuccess}
+                        buttonLabel={isEditing ? "Update Feedback" : "Submit Feedback"}
+                        isEdit={isEditing}
+                    />
+                </Suspense>
                 {isEditing && (
                     <div className="text-right mt-2">
                         <button
@@ -108,15 +111,17 @@ const FeedbackPage = () => {
             {getUserFeedback.length ? (
                 <>
                     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                        {getUserFeedback.slice(0, showAllUserFeedback).map((feedback) => (
-                            <FeedbackCard
-                                key={feedback._id}
-                                feedback={feedback}
-                                isOwner={true}
-                                onEdit={() => handleEdit(feedback)}
-                                onDelete={() => handleDelete(feedback._id)}
-                            />
-                        ))}
+                        <Suspense fallback={<div>Loading feedback...</div>}>
+                            {getUserFeedback.slice(0, showAllUserFeedback).map((feedback) => (
+                                <FeedbackCard
+                                    key={feedback._id}
+                                    feedback={feedback}
+                                    isOwner={true}
+                                    onEdit={() => handleEdit(feedback)}
+                                    onDelete={() => handleDelete(feedback._id)}
+                                />
+                            ))}
+                        </Suspense>
                     </div>
                     {getUserFeedback.length > showAllUserFeedback && (
                         <div className="mt-4 text-center">
@@ -138,13 +143,15 @@ const FeedbackPage = () => {
             {othersFeedback.length ? (
                 <>
                     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                        {othersFeedback.slice(0, showAllFeedback).map((feedback) => (
-                            <FeedbackCard
-                                key={feedback._id}
-                                feedback={feedback}
-                                isOwner={false}
-                            />
-                        ))}
+                        <Suspense fallback={<div>Loading feedback...</div>}>
+                            {othersFeedback.slice(0, showAllFeedback).map((feedback) => (
+                                <FeedbackCard
+                                    key={feedback._id}
+                                    feedback={feedback}
+                                    isOwner={false}
+                                />
+                            ))}
+                        </Suspense>
                     </div>
                     {othersFeedback.length > showAllFeedback && (
                         <div className="mt-4 text-center">

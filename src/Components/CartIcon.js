@@ -1,8 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react/dist/esm/icons/chevron-right';
 
-const PromoBanner = () => {
+const CartIcon = () => {
   return (
     <div className="w-full bg-indigo-600 text-white">
       <div className="container mx-auto px-4 py-2 flex items-center justify-center">
@@ -28,4 +27,4 @@ const PromoBanner = () => {
   );
 };
 
-export default PromoBanner;
+export default CartIcon;

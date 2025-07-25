@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
-import PopupModal from "./PopupModal";
-import CardSkeleton from "./Skeleton/CardSkeleton";
+
+const PopupModal = lazy(() => import("./PopupModal"));
+const CardSkeleton = lazy(() => import("./Skeleton/CardSkeleton"));
 
 const Card = ({ products }) => {
   const [popupVisible, setPopupVisible] = useState(false);
@@ -38,7 +39,9 @@ const Card = ({ products }) => {
       {products.length === 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
           {Array.from({ length: 6 }).map((_, index) => (
-            <CardSkeleton key={index} />
+            <Suspense key={index} fallback={<div className="h-64 bg-gray-200 animate-pulse rounded-xl"/>}>
+              <CardSkeleton key={index} />
+            </Suspense>
           ))}
         </div>
       ) : (
@@ -90,7 +93,9 @@ const Card = ({ products }) => {
       )}
 
       {popupVisible && selectedProduct && (
-        <PopupModal product={selectedProduct} onClose={handleClosePopup} />
+        <Suspense fallback={<div className="fixed inset-0 bg-black bg-opacity-50"/>}>
+          <PopupModal product={selectedProduct} onClose={handleClosePopup} />
+        </Suspense>
       )}
     </div>
   );

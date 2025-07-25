@@ -1,6 +1,6 @@
-import React from 'react';
+import { memo, useMemo } from 'react';
 
-const StarRating = ({ rating }) => {
+const StarRating = memo(({ rating }) => {
   return (
     <div className="flex text-yellow-500">
       {[...Array(5)].map((_, index) => (
@@ -19,10 +19,10 @@ const StarRating = ({ rating }) => {
       ))}
     </div>
   );
-};
+});
 
-const Testimonials = () => {
-  const testimonials = [
+const Testimonials = memo(() => {
+  const testimonials = useMemo(() => [
     {
       name: 'Sarah Johnson',
       image: '/images/customer-1.jpg',
@@ -41,7 +41,7 @@ const Testimonials = () => {
       review: 'Great alterations service. They transformed my old dress into something beautiful.',
       rating: 4
     }
-  ];
+  ], []);
 
   return (
     <section className="bg-background py-16">
@@ -75,6 +75,6 @@ const Testimonials = () => {
       </div>
     </section>
   );
-};
-
+});
+export { StarRating };
 export default Testimonials;

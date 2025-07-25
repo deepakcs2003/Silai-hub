@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Star, Edit, Trash2, MoreVertical } from 'lucide-react';
+import dynamic from 'next/dynamic';
+
+const icons = {
+  Star: dynamic(() => import('lucide-react').then(mod => mod.Star)),
+  Edit: dynamic(() => import('lucide-react').then(mod => mod.Edit)),
+  Trash2: dynamic(() => import('lucide-react').then(mod => mod.Trash2)),
+  MoreVertical: dynamic(() => import('lucide-react').then(mod => mod.MoreVertical))
+};
 
 const FeedbackCard = ({ feedback, isOwner, onUpdate, onEdit, onDelete }) => {
     const [showActions, setShowActions] = useState(false);
@@ -17,10 +24,10 @@ const FeedbackCard = ({ feedback, isOwner, onUpdate, onEdit, onDelete }) => {
 
     const renderStars = (rating) => (
         [...Array(5)].map((_, i) => (
-            <Star
-                key={i}
-                className={`h-4 w-4 ${i < rating ? 'text-green-500 fill-current' : 'text-gray-300'}`}
-            />
+            React.createElement(icons.Star, {
+                key: i,
+                className: `h-4 w-4 ${i < rating ? 'text-green-500 fill-current' : 'text-gray-300'}`
+            })
         ))
     );
 
@@ -73,15 +80,15 @@ const FeedbackCard = ({ feedback, isOwner, onUpdate, onEdit, onDelete }) => {
                     {isOwner && (
                         <div className="relative">
                             <button onClick={() => setShowActions(!showActions)} className="p-1.5 rounded hover:bg-gray-100">
-                                <MoreVertical className="h-4 w-4 text-gray-500" />
+                                {React.createElement(icons.MoreVertical, { className: "h-4 w-4 text-gray-500" })}
                             </button>
                             {showActions && (
                                 <div className="absolute right-0 top-full mt-2 z-20 bg-white rounded shadow-lg border w-32">
                                     <button onClick={() => { onEdit?.(feedback); setShowActions(false); }} className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2">
-                                        <Edit className="w-4 h-4" /> Edit
+                                        {React.createElement(icons.Edit, { className: "w-4 h-4" })} Edit
                                     </button>
                                     <button onClick={handleDelete} className="w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2">
-                                        <Trash2 className="w-4 h-4" /> Delete
+                                        {React.createElement(icons.Trash2, { className: "w-4 h-4" })} Delete
                                     </button>
                                 </div>
                             )}

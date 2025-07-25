@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-
-// Note: Replace these with your actual image imports
+import { useState, useEffect, useCallback, memo, useMemo } from 'react';
+import { ArrowRight } from 'lucide-react/dist/esm/icons/arrow-right';
+import { ChevronLeft } from 'lucide-react/dist/esm/icons/chevron-left';
+import { ChevronRight } from 'lucide-react/dist/esm/icons/chevron-right';
 import b1 from '../Assist/b1.jpg';
 import b2 from '../Assist/b2.jpg';
 import b3 from '../Assist/b3.jpg';
 
-const HeroSection = () => {
+const HeroSection = memo(() => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const heroContent = [
+  const heroContent = useMemo(() => [
     {
       image: b1,
       title: "Perfect Fit, Every Time!",
@@ -34,15 +34,15 @@ const HeroSection = () => {
       buttonText: "Order Now",
       link: "/gallery" // Link for Order Now button
     }
-  ];
+  ], []);
 
   const handleNextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % heroContent.length);
   }, [heroContent.length]);
 
-  const handlePrevSlide = () => {
+  const handlePrevSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + heroContent.length) % heroContent.length);
-  };
+  }, [heroContent.length]);
 
   // Auto-slider effect
   useEffect(() => {
@@ -142,6 +142,7 @@ const HeroSection = () => {
       </div>
     </div>
   );
-};
+});
 
+export { HeroSection };
 export default HeroSection;

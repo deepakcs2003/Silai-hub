@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { FaStar } from 'react-icons/fa'; // Star icons
+import dynamic from 'next/dynamic';
 import uploadMedia from '../../Common/uploadMedia';
 import summaryApi from '../../Common';
+
+const FaStar = dynamic(() => import('react-icons/fa').then(mod => mod.FaStar), {
+  ssr: false
+});
 
 const FeedBackForm = ({ feedback, onSuccess, buttonLabel = "Submit Feedback", isEdit }) => {
   const [formData, setFormData] = useState({
@@ -113,17 +117,15 @@ const FeedBackForm = ({ feedback, onSuccess, buttonLabel = "Submit Feedback", is
       <div>
         <label className="block mb-1 font-medium text-gray-700">Rating:</label>
         <div className="flex space-x-1 mb-4">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <FaStar
-              key={star}
-              className={`cursor-pointer text-2xl transition duration-200 ${
+          {[1, 2, 3, 4, 5].map((star) => React.createElement(FaStar, {
+              key: star,
+              className: `cursor-pointer text-2xl transition duration-200 ${
                 (hoverRating || formData.rating) >= star ? 'text-yellow-400' : 'text-gray-300'
-              }`}
-              onMouseEnter={() => setHoverRating(star)}
-              onMouseLeave={() => setHoverRating(0)}
-              onClick={() => handleRatingClick(star)}
-            />
-          ))}
+              }`,
+              onMouseEnter: () => setHoverRating(star),
+              onMouseLeave: () => setHoverRating(0),
+              onClick: () => handleRatingClick(star)
+            }))}
         </div>
       </div>
 

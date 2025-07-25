@@ -1,16 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, Suspense, lazy } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  Package,
-  Ruler,
-  User,
-  CreditCard,
-  ArrowLeft,
-  ArrowRight,
-  ChevronRight,
-  ChevronDown,
-  Phone
-} from 'lucide-react';
+const Package = lazy(() => import('lucide-react').then(mod => ({ default: mod.Package })));
+const Ruler = lazy(() => import('lucide-react').then(mod => ({ default: mod.Ruler })));
+const User = lazy(() => import('lucide-react').then(mod => ({ default: mod.User })));
+const CreditCard = lazy(() => import('lucide-react').then(mod => ({ default: mod.CreditCard })));
+const ArrowLeft = lazy(() => import('lucide-react').then(mod => ({ default: mod.ArrowLeft })));
+const ArrowRight = lazy(() => import('lucide-react').then(mod => ({ default: mod.ArrowRight })));
+const ChevronRight = lazy(() => import('lucide-react').then(mod => ({ default: mod.ChevronRight })));
+const ChevronDown = lazy(() => import('lucide-react').then(mod => ({ default: mod.ChevronDown })));
+const Phone = lazy(() => import('lucide-react').then(mod => ({ default: mod.Phone })));
+
 
 import { AppContext } from '../App';
 import Measurement from '../Components/OrderComponent/Measurement';
@@ -129,7 +128,7 @@ const Order = () => {
             {/* Contact Information */}
             <div className="bg-blue-50 rounded-lg p-4 mb-6 border border-blue-100">
               <div className="flex items-center justify-center space-x-3 mb-3">
-                <Phone className="text-blue-600" size={24} />
+                <Suspense fallback={<div>Loading...</div>}><Phone className="text-blue-600" size={24} /></Suspense>
                 <h4 className="text-lg font-semibold text-gray-700">
                   Custom Order Enquiry
                 </h4>
@@ -151,7 +150,7 @@ const Order = () => {
                 bg-blue-500 text-white px-4 py-2 rounded-lg 
                 hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400"
               >
-                <Phone className="mr-2" size={20} />
+                <Suspense fallback={<div>Loading...</div>}><Phone className="mr-2" size={20} /></Suspense>
                 Call Now
               </a>
               <div className="flex flex-col items-start justify-center space-y-2 mb-3">
@@ -208,7 +207,7 @@ const Order = () => {
 
               {/* Custom dropdown icon */}
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                <ChevronDown size={24} />
+                <Suspense fallback={<div>Loading...</div>}><ChevronDown size={24} /></Suspense>
               </div>
 
             </div>
@@ -273,9 +272,9 @@ const Order = () => {
                 className={`flex items-center space-x-2 cursor-pointer 
                   ${step === index + 1 ? 'text-blue-600 font-bold' : 'text-gray-500'}`}
               >
-                <stepItem.icon className={`w-5 h-5 ${step === index + 1 ? 'text-blue-600' : 'text-gray-400'}`} />
+                <Suspense fallback={<div>Loading...</div>}><stepItem.icon className={`w-5 h-5 ${step === index + 1 ? 'text-blue-600' : 'text-gray-400'}`} /></Suspense>
                 <span className="hidden md:block">{stepItem.label}</span>
-                {index < stepConfig.length - 1 && <ChevronRight className="w-4 h-4 text-gray-300" />}
+                {index < stepConfig.length - 1 && <Suspense fallback={<div>Loading...</div>}><ChevronRight className="w-4 h-4 text-gray-300" /></Suspense>}
               </div>
             ))}
           </div>
@@ -299,7 +298,7 @@ const Order = () => {
                     bg-gray-200 text-gray-700 rounded-lg 
                     hover:bg-gray-300 transition-colors"
                   >
-                    <ArrowLeft className="w-5 h-5" />
+                    <Suspense fallback={<div>Loading...</div>}><ArrowLeft className="w-5 h-5" /></Suspense>
                     <span>Previous</span>
                   </button>
                 )}
@@ -312,7 +311,7 @@ const Order = () => {
                     hover:bg-blue-600 transition-colors ml-auto"
                   >
                     <span>Next</span>
-                    <ArrowRight className="w-5 h-5" />
+                    <Suspense fallback={<div>Loading...</div>}><ArrowRight className="w-5 h-5" /></Suspense>
                   </button>
                 )}
               </div>

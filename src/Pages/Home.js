@@ -1,12 +1,12 @@
-import React, { useContext, useState, useEffect, useCallback, useRef } from 'react';
-import HeroSection from '../Components/HeroSection';
-import Services from '../Components/ServiceCard';
-import WhyChooseUs from '../Components/WhyChooseUs';
-import FeaturedDesigns from '../Components/FeaturedDesigns';
+import React, { useContext, useState, useEffect, useCallback, useRef, Suspense, lazy } from 'react';
+const HeroSection = lazy(() => import('../Components/HeroSection'));
+const Services = lazy(() => import('../Components/ServiceCard'));
+const WhyChooseUs = lazy(() => import('../Components/WhyChooseUs'));
+const FeaturedDesigns = lazy(() => import('../Components/FeaturedDesigns'));
+const FeedbackCard = lazy(() => import('../Components/FeedbackComponents/FeedbackCard'));
 import { AppContext } from '../App';
-import FeedbackCard from '../Components/FeedbackComponents/FeedbackCard';
 import { useNavigate } from 'react-router-dom';
-import { Smile } from "lucide-react";
+// ...existing code...
 
 const Home = () => {
   const { allFeedback } = useContext(AppContext);
@@ -106,7 +106,9 @@ const Home = () => {
 
           {/* Featured Products */}
           <div className="">
-            <FeaturedDesigns />
+            <Suspense fallback={<div>Loading designs...</div>}>
+              <FeaturedDesigns />
+            </Suspense>
           </div>
 
           {/* Action Buttons */}
@@ -147,7 +149,9 @@ const Home = () => {
                 key={feedback._id}
                 className="transform hover:scale-105 transition-transform duration-300"
               >
-                <FeedbackCard feedback={feedback} isOwner={false} />
+                <Suspense fallback={<div>Loading feedback...</div>}>
+                  <FeedbackCard feedback={feedback} isOwner={false} />
+                </Suspense>
               </div>
             ))}
           </div>
@@ -183,17 +187,23 @@ const Home = () => {
       <section className="space-y-12 md:space-y-16 py-8">
         {/* Hero Section Component */}
         <div className="overflow-hidden">
-          <HeroSection />
+          <Suspense fallback={<div>Loading hero...</div>}>
+            <HeroSection />
+          </Suspense>
         </div>
 
         {/* Why Choose Us Component */}
         <div className="mx-4 rounded-2xl shadow-xl overflow-hidden">
-          <WhyChooseUs />
+          <Suspense fallback={<div>Loading why choose us...</div>}>
+            <WhyChooseUs />
+          </Suspense>
         </div>
 
         {/* Services Component */}
         <div className="mx-4 rounded-2xl shadow-xl overflow-hidden">
-          <Services />
+          <Suspense fallback={<div>Loading services...</div>}>
+            <Services />
+          </Suspense>
         </div>
       </section>
 

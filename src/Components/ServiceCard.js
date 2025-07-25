@@ -1,7 +1,9 @@
-import React from 'react';
-import { Shirt, Star, Scissors } from 'lucide-react';
+import { memo, useMemo } from 'react';
+import { Shirt } from 'lucide-react/dist/esm/icons/shirt';
+import { Star } from 'lucide-react/dist/esm/icons/star';
+import { Scissors } from 'lucide-react/dist/esm/icons/scissors';
 
-const ServiceCard = ({ icon, title, description }) => (
+const ServiceCard = memo(({ icon, title, description }) => (
   <div className="bg-neutral-50 p-6 rounded-lg shadow-md text-center hover:shadow-xl transition">
     <div className="flex justify-center mb-4">
       {icon}
@@ -9,10 +11,10 @@ const ServiceCard = ({ icon, title, description }) => (
     <h3 className="text-xl font-semibold mb-2 text-primary">{title}</h3>
     <p className="text-neutral-600">{description}</p>
   </div>
-);
+));
 
-const Services = () => {
-  const services = [
+const Services = memo(() => {
+  const services = useMemo(() => [
     {
       icon: <Shirt size={48} className="text-accent" />,
       title: "Custom Blouse Stitching",
@@ -28,7 +30,7 @@ const Services = () => {
       title: "Alteration Services",
       description: "Professional alterations to ensure your clothes fit like a glove."
     }
-  ];
+  ], []);
 
   return (
     <section className="container mx-auto py-16 px-4">
@@ -49,6 +51,6 @@ const Services = () => {
       </div>
     </section>
   );
-};
-
+});
+export { ServiceCard };
 export default Services;

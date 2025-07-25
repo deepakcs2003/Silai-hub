@@ -1,13 +1,13 @@
-import React from 'react';
+import { memo, useMemo } from 'react';
 
-const ReasonIcon = ({ children }) => (
+const ReasonIcon = memo(({ children }) => (
   <div className="bg-accent/10 rounded-full p-4 inline-block">
     {children}
   </div>
-);
+));
 
-const WhyChooseUs = () => {
-  const reasons = [
+const WhyChooseUs = memo(() => {
+  const reasons = useMemo(() => [
     {
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
@@ -38,7 +38,7 @@ const WhyChooseUs = () => {
       title: "Affordable Pricing",
       description: "High-quality tailoring without breaking the bank."
     }
-  ];
+  ], []);
 
   return (
     <section className="container mx-auto py-16 px-4">
@@ -58,6 +58,7 @@ const WhyChooseUs = () => {
       </div>
     </section>
   );
-};
+});
 
+export { ReasonIcon };
 export default WhyChooseUs;

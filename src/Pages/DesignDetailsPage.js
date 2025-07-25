@@ -1,13 +1,11 @@
-import React, { useState } from 'react'; 
-import { 
-  ArrowLeft, 
-  Expand, 
-  ShoppingCart, 
-  Ruler, 
-  Palette, 
-  Scissors, 
-  Shirt 
-} from 'lucide-react';
+import React, { useState, Suspense, lazy } from 'react';
+const ArrowLeft = lazy(() => import('lucide-react').then(mod => ({ default: mod.ArrowLeft })));
+const Expand = lazy(() => import('lucide-react').then(mod => ({ default: mod.Expand })));
+const ShoppingCart = lazy(() => import('lucide-react').then(mod => ({ default: mod.ShoppingCart })));
+const Ruler = lazy(() => import('lucide-react').then(mod => ({ default: mod.Ruler })));
+const Palette = lazy(() => import('lucide-react').then(mod => ({ default: mod.Palette })));
+const Scissors = lazy(() => import('lucide-react').then(mod => ({ default: mod.Scissors })));
+const Shirt = lazy(() => import('lucide-react').then(mod => ({ default: mod.Shirt })));
 import { useLocation } from 'react-router-dom';
 
 const DesignDetailsPage = ({ onClose }) => {
@@ -29,7 +27,7 @@ const DesignDetailsPage = ({ onClose }) => {
   const renderBlouseTailoringDetails = () => (
     <div className="bg-gray-100 p-4 rounded-lg">
       <h3 className="text-xl font-semibold mb-3 flex items-center">
-        <Shirt className="mr-2 text-blue-600" />
+        <Suspense fallback={<div>Loading...</div>}><Shirt className="mr-2 text-blue-600" /></Suspense>
         Blouse Tailoring Details
       </h3>
       <div className="grid md:grid-cols-2 gap-2">
@@ -76,7 +74,7 @@ const DesignDetailsPage = ({ onClose }) => {
           onClick={onClose} 
           className="flex items-center text-gray-700 hover:text-blue-600 transition"
         >
-          <ArrowLeft className="mr-2" /> Back
+          <Suspense fallback={<div>Loading...</div>}><ArrowLeft className="mr-2" /></Suspense> Back
         </button>
       </div>
 
@@ -95,7 +93,7 @@ const DesignDetailsPage = ({ onClose }) => {
               onClick={() => handleImageZoom(activeImage)}
               className="absolute top-4 right-4 bg-white/70 p-2 rounded-full hover:bg-white transition"
             >
-              <Expand className="text-gray-700" />
+              <Suspense fallback={<div>Loading...</div>}><Expand className="text-gray-700" /></Suspense>
             </button>
           </div>
 
@@ -121,7 +119,7 @@ const DesignDetailsPage = ({ onClose }) => {
           {/* Fabric & Material Details */}
           <div>
             <h3 className="text-xl font-semibold mb-4 flex items-center">
-              <Palette className="mr-2 text-blue-600" />
+              <Suspense fallback={<div>Loading...</div>}><Palette className="mr-2 text-blue-600" /></Suspense>
               Fabric & Material
             </h3>
             <div className="grid md:grid-cols-3 gap-4 bg-gray-100 p-4 rounded-lg">
@@ -140,7 +138,7 @@ const DesignDetailsPage = ({ onClose }) => {
           {/* Customization Options */}
           <div>
             <h3 className="text-xl font-semibold mb-4 flex items-center">
-              <Scissors className="mr-2 text-blue-600" />
+              <Suspense fallback={<div>Loading...</div>}><Scissors className="mr-2 text-blue-600" /></Suspense>
               Customization Options
             </h3>
             <div className="grid md:grid-cols-2 gap-4 bg-gray-100 p-4 rounded-lg">
@@ -155,7 +153,7 @@ const DesignDetailsPage = ({ onClose }) => {
         <div className="p-6 border-t flex justify-between items-center">
           {renderPrice()}
           <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition flex items-center">
-            <ShoppingCart className="mr-2" /> Add to Cart
+            <Suspense fallback={<div>Loading...</div>}><ShoppingCart className="mr-2" /></Suspense> Add to Cart
           </button>
         </div>
       </div>

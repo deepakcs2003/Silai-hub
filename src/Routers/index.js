@@ -1,20 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import Home from "../Pages/Home";
-import AboutUsPage from "../Pages/AboutUsPage";
-import GalleryPage from "../Pages/GalleryPage";
-import DesignDetailsPage from "../Pages/DesignDetailsPage";
-import { LogInAndSignUp } from "../Pages/LogInAndSignUp";
-import LoginPage from "../Pages/LoginPage";
-import SignupPage from "../Pages/SignupPage";
-import { AdminPage } from "../Pages/AdminPage";
-import AddProduct from "../Pages/AdminPages/AddProduct";
-import ViewProduct from "../Pages/AdminPages/ViewProduct";
-import SingleProductDetails from "../Pages/SingleProductDetails";
-import Carts from "../Pages/Carts";
-import Order from "../Pages/Order";
-import Contact from "../Pages/Contact";
-import FeedbackPage from "../Pages/FeedbackPage"
+import React, { Suspense, lazy } from "react";
+import App from "../App";
+const Home = lazy(() => import("../Pages/Home"));
+const AboutUsPage = lazy(() => import("../Pages/AboutUsPage"));
+const GalleryPage = lazy(() => import("../Pages/GalleryPage"));
+const DesignDetailsPage = lazy(() => import("../Pages/DesignDetailsPage"));
+const LogInAndSignUp = lazy(() => import("../Pages/LogInAndSignUp"));
+const LoginPage = lazy(() => import("../Pages/LoginPage"));
+const SignupPage = lazy(() => import("../Pages/SignupPage"));
+const AdminPage = lazy(() => import("../Pages/AdminPage"));
+const AddProduct = lazy(() => import("../Pages/AdminPages/AddProduct"));
+const ViewProduct = lazy(() => import("../Pages/AdminPages/ViewProduct"));
+const SingleProductDetails = lazy(() => import("../Pages/SingleProductDetails"));
+const Carts = lazy(() => import("../Pages/Carts"));
+const Order = lazy(() => import("../Pages/Order"));
+const Contact = lazy(() => import("../Pages/Contact"));
+const FeedbackPage = lazy(() => import("../Pages/FeedbackPage"));
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,63 +24,123 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Home />
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Home />
+          </Suspense>
+        )
       },
       {
-        path: "about",  // no need for leading slash
-        element: <AboutUsPage />
+        path: "about",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <AboutUsPage />
+          </Suspense>
+        )
       },
       {
-        path: "gallery", // changed from /GalleryPage to gallery
-        element: <GalleryPage/>
+        path: "gallery",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <GalleryPage />
+          </Suspense>
+        )
       },
       {
-        path: "details", // changed from /details to details
-        element: <DesignDetailsPage />
+        path: "details",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <DesignDetailsPage />
+          </Suspense>
+        )
       },
       {
-        path:"login-signup",
-        element:<LogInAndSignUp></LogInAndSignUp>
+        path: "login-signup",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <LogInAndSignUp />
+          </Suspense>
+        )
       },
       {
-        path:"login",
-        element:<LoginPage></LoginPage>
+        path: "login",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <LoginPage />
+          </Suspense>
+        )
       },
       {
-        path:"signup",
-        element:<SignupPage></SignupPage>
+        path: "signup",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <SignupPage />
+          </Suspense>
+        )
       },
       {
-        path:"admin",
-        element:<AdminPage></AdminPage>
+        path: "admin",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <AdminPage />
+          </Suspense>
+        )
       },
       {
-        path:"product/:id/:type",
-        element:<AddProduct></AddProduct>
+        path: "product/:id/:type",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <AddProduct />
+          </Suspense>
+        )
       },
       {
-        path:"view_product",
-        element:<ViewProduct></ViewProduct>
+        path: "view_product",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <ViewProduct />
+          </Suspense>
+        )
       },
       {
-        path:"product/:id",
-        element:<SingleProductDetails></SingleProductDetails>
+        path: "product/:id",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <SingleProductDetails />
+          </Suspense>
+        )
       },
       {
-        path:"cart",
-        element:<Carts></Carts>
+        path: "cart",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Carts />
+          </Suspense>
+        )
       },
       {
-        path: "order/:id/:type", // Both id and type are required parameters
-        element: <Order />
-      } ,
-      {
-        path: "contact", // Both id and type are required parameters
-        element: <Contact/>
+        path: "order/:id/:type",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Order />
+          </Suspense>
+        )
       },
       {
-        path:'feedback',
-        element:<FeedbackPage/>
+        path: "contact",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Contact />
+          </Suspense>
+        )
+      },
+      {
+        path: "feedback",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <FeedbackPage />
+          </Suspense>
+        )
       }
     ]
   }

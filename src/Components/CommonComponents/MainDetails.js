@@ -1,28 +1,31 @@
 import React, { useState } from 'react';
-import {
-    Info,
-    Palette,
-    Shirt,
-    Scissors,
-    Layers,
-    Tag,
-    CheckCircle2,
-    AlertCircle,
-    ChevronDown,
-    ChevronUp
-} from 'lucide-react';
+import dynamic from 'next/dynamic';
 
-const DetailItem = ({ icon: Icon, label, value, variant = 'default' }) => {
+const icons = {
+    Info: dynamic(() => import('lucide-react').then(mod => mod.Info)),
+    Palette: dynamic(() => import('lucide-react').then(mod => mod.Palette)),
+    Shirt: dynamic(() => import('lucide-react').then(mod => mod.Shirt)),
+    Scissors: dynamic(() => import('lucide-react').then(mod => mod.Scissors)),
+    Layers: dynamic(() => import('lucide-react').then(mod => mod.Layers)),
+    Tag: dynamic(() => import('lucide-react').then(mod => mod.Tag)),
+    CheckCircle2: dynamic(() => import('lucide-react').then(mod => mod.CheckCircle2)),
+    AlertCircle: dynamic(() => import('lucide-react').then(mod => mod.AlertCircle)),
+    ChevronDown: dynamic(() => import('lucide-react').then(mod => mod.ChevronDown)),
+    ChevronUp: dynamic(() => import('lucide-react').then(mod => mod.ChevronUp))
+};
+
+const DetailItem = ({ icon, label, value, variant = 'default' }) => {
     const variants = {
         default: 'bg-blue-50 text-blue-800',
         highlight: 'bg-green-50 text-green-800',
         warning: 'bg-yellow-50 text-yellow-800'
     };
-
+    
+    const Icon = icons[icon];
     return (
         <div className={`flex items-center justify-between p-4 rounded-xl transition-all duration-300 hover:shadow-md ${variants[variant]}`}>
             <div className="flex items-center space-x-3">
-                <Icon className="w-5 h-5 opacity-70" />
+                {React.createElement(Icon, { className: "w-5 h-5 opacity-70" })}
                 <span className="font-semibold text-sm md:text-base">{label}</span>
             </div>
             <span className="font-medium text-sm md:text-base truncate max-w-[50%] text-right">{value}</span>
@@ -44,49 +47,49 @@ const MainDetails = ({ product }) => {
 
     const details = [
         {
-            icon: AlertCircle,
+            icon: 'AlertCircle',
             label: 'category',
             value: product?.category,
             variant: 'highlight'
         },
         {
-            icon: Shirt,
+            icon: 'Shirt',
             label: 'Product Type',
             value: product?.productType,
             variant: 'default'
         },
         {
-            icon: Palette,
+            icon: 'Palette',
             label: 'Colors',
             value: product?.color,
             variant: 'highlight'
         },
         {
-            icon: Layers,
+            icon: 'Layers',
             label: 'Fabric',
             value: product?.fabricType,
             variant: 'default'
         },
         {
-            icon: Scissors,
+            icon: 'Scissors',
             label: 'Stitching Type',
             value: product?.stitchingType,
             variant: 'default'
         },
         {
-            icon: Tag,
+            icon: 'Tag',
             label: 'Pattern',
             value: product?.pattern,
             variant: 'highlight'
         },
         {
-            icon: CheckCircle2,
+            icon: 'CheckCircle2',
             label: 'Customization',
             value: product?.customizationAvailable ? 'Available' : 'Not Available',
             variant: product?.customizationAvailable ? 'highlight' : 'warning'
         },
         {
-            icon: AlertCircle,
+            icon: 'AlertCircle',
             label: 'Availability',
             value: product?.availabilityStatus,
             variant: product?.availabilityStatus === 'In Stock' ? 'highlight' : 'warning'
@@ -97,7 +100,7 @@ const MainDetails = ({ product }) => {
         <div className="bg-white shadow-xl rounded-2xl overflow-hidden w-full max-w-full">
             <div className="p-5 bg-blue-50">
                 <div className="flex items-center mb-3">
-                    <Info className="w-6 h-6 mr-3 text-blue-600" />
+                    {React.createElement(icons.Info, { className: "w-6 h-6 mr-3 text-blue-600" })}
                     <h2 className="text-xl font-bold text-blue-800">Product Description</h2>
                 </div>
 
@@ -113,11 +116,11 @@ const MainDetails = ({ product }) => {
                         className="text-blue-600 hover:text-blue-800 font-semibold text-sm mt-2 flex items-center"
                     >
                         {showFullDescription ? 'Show Less' : 'Read More'}
-                        {showFullDescription ? (
-                            <ChevronUp className="ml-1 w-4 h-4" />
-                        ) : (
-                            <ChevronDown className="ml-1 w-4 h-4" />
-                        )}
+                        {showFullDescription ? 
+                            React.createElement(icons.ChevronUp, { className: "ml-1 w-4 h-4" })
+                         : 
+                            React.createElement(icons.ChevronDown, { className: "ml-1 w-4 h-4" })
+                        }
                     </button>
                 )}
             </div>
@@ -142,8 +145,8 @@ const MainDetails = ({ product }) => {
                         >
                             {expandedDetails ? 'Show Less' : `View All ${details.length} Details`}
                             {expandedDetails
-                                ? <ChevronUp className="ml-2 w-4 h-4" />
-                                : <ChevronDown className="ml-2 w-4 h-4" />}
+                                ? React.createElement(icons.ChevronUp, { className: "ml-2 w-4 h-4" })
+                                : React.createElement(icons.ChevronDown, { className: "ml-2 w-4 h-4" })}
                         </button>
                     )}
                 </div>

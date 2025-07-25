@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { ShoppingCart } from 'lucide-react';
-import { useNavigate } from 'react-router-dom'; // Corrected import
-import { toast } from 'react-toastify'; // Import react-toastify
-import 'react-toastify/dist/ReactToastify.css'; // Import styles for react-toastify
+import { useState, memo, useCallback } from 'react';
+import { ShoppingCart } from 'lucide-react/dist/esm/icons/shopping-cart';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import summaryApi from '../Common';
 
-const PopupModal = ({ product, onClose }) => {
+const PopupModal = memo(function PopupModal({ product, onClose }) {
   const [cartData, setCartData] = useState({
     userId: localStorage.getItem("userId") || "",
     productId: product._id,
@@ -17,7 +17,7 @@ const PopupModal = ({ product, onClose }) => {
   const navigate = useNavigate();
 
   // Add to cart handler
-  const handleAddToCart = async (type) => {
+  const handleAddToCart = useCallback(async (type) => {
     const token = localStorage.getItem('token'); // Retrieve the token from localStorage
 
     if (!token) {
@@ -57,7 +57,7 @@ const PopupModal = ({ product, onClose }) => {
       console.error('Error adding to cart:', error);
       toast.error('Failed to add product to cart. Please try again.'); // Show error toast
     }
-  };
+  }, [cartData, navigate, onClose, product._id, product.productName]);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
@@ -92,6 +92,6 @@ const PopupModal = ({ product, onClose }) => {
       </div>
     </div>
   );
-};
-
+});
+ex
 export default PopupModal;
