@@ -1,12 +1,14 @@
 import React from 'react';
-import {
-    FaTags,
-    FaTruck,
-    FaCheckCircle,
-    FaTimesCircle,
-    FaPercentage,
-    FaShoppingCart
-} from 'react-icons/fa';
+import dynamic from 'next/dynamic';
+
+const icons = {
+    FaTags: dynamic(() => import('react-icons/fa').then(mod => mod.FaTags)),
+    FaTruck: dynamic(() => import('react-icons/fa').then(mod => mod.FaTruck)),
+    FaCheckCircle: dynamic(() => import('react-icons/fa').then(mod => mod.FaCheckCircle)),
+    FaTimesCircle: dynamic(() => import('react-icons/fa').then(mod => mod.FaTimesCircle)),
+    FaPercentage: dynamic(() => import('react-icons/fa').then(mod => mod.FaPercentage)),
+    FaShoppingCart: dynamic(() => import('react-icons/fa').then(mod => mod.FaShoppingCart))
+};
 
 const PriceDetails = ({ product }) => {
     // Calculate discounted prices
@@ -33,13 +35,13 @@ const PriceDetails = ({ product }) => {
             <div className='flex justify-between '>
                 <div className="bg-gradient-to-r w-1/2 from-blue-600 to-purple-700 text-white p-4 md:p-6 text-center">
                     <h2 className="text-base md:text-3xl font-bold flex items-center justify-start gap-3">
-                        <FaShoppingCart />
+                        {React.createElement(icons.FaShoppingCart)}
                         Price Details
                     </h2>
                 </div>
 
-                <div className=" bg-red-500 text-white  px-3 py-1 w-1/2 flex items-center flex justify-center gap-2  text-sm md:text-base">
-                    <FaPercentage />
+                <div className="bg-red-500 text-white px-3 py-1 w-1/2 flex items-center justify-center gap-2 text-sm md:text-base">
+                    {React.createElement(icons.FaPercentage)}
                     <span className="font-bold">{product.discount}% OFF</span>
                 </div>
 
@@ -53,7 +55,7 @@ const PriceDetails = ({ product }) => {
                 {/* Discounted Prices Section */}
                 <div className="bg-green-50 border-l-4 border-green-500 p-3 md:p-4 rounded-lg">
                     <h3 className="text-lg md:text-xl font-bold text-green-800 mb-3 md:mb-4 flex items-center gap-2">
-                        <FaTags className="text-green-600" /> Discounted Prices
+                        {React.createElement(icons.FaTags, { className: "text-green-600" })} Discounted Prices
                     </h3>
 
                     <div className="space-y-2 md:space-y-3">
@@ -82,14 +84,14 @@ const PriceDetails = ({ product }) => {
                 {/* Additional Information - Responsive Layout */}
                 <div className="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 rounded-lg">
                     <h3 className="text-lg md:text-xl font-bold text-blue-800 mb-3 md:mb-4 flex items-center gap-2">
-                        <FaTruck className="text-blue-600" /> Product Information
+                        {React.createElement(icons.FaTruck, { className: "text-blue-600" })} Product Information
                     </h3>
 
                     <div className="space-y-2 md:space-y-3">
                         {/* Availability */}
                         <div className="flex justify-between items-center">
                             <span className="text-gray-700 flex items-center gap-2 text-sm md:text-base">
-                                <FaCheckCircle className="text-green-500" /> Availability:
+                                {React.createElement(icons.FaCheckCircle, { className: "text-green-500" })} Availability:
                             </span>
                             <span className={`font-semibold text-sm md:text-base ${product.availabilityStatus === 'Available' ? 'text-green-600' : 'text-red-600'}`}>
                                 {product.availabilityStatus}

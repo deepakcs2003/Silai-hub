@@ -1,5 +1,9 @@
-import React from 'react';
-import { Mail, Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
+import React, { Suspense, lazy } from 'react';
+const Mail = lazy(() => import('lucide-react').then(mod => ({ default: mod.Mail })));
+const Phone = lazy(() => import('lucide-react').then(mod => ({ default: mod.Phone })));
+const MapPin = lazy(() => import('lucide-react').then(mod => ({ default: mod.MapPin })));
+const Clock = lazy(() => import('lucide-react').then(mod => ({ default: mod.Clock })));
+const MessageCircle = lazy(() => import('lucide-react').then(mod => ({ default: mod.MessageCircle })));
 
 const Contact = () => {
   // Structured data for SEO
@@ -72,7 +76,9 @@ const Contact = () => {
                 <div className="text-center">
                   <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300"
                        style={{ backgroundColor: '#d6e6ff' }}>
-                    <Mail className="text-blue-600" size={32} />
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <Mail className="text-blue-600" size={32} />
+                    </Suspense>
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">Email Us</h3>
                   <p className="text-sm sm:text-base text-gray-600 break-all">
@@ -81,7 +87,9 @@ const Contact = () => {
                   <div className="mt-4">
                     <a href="mailto:guddivishwakarma915@gmail.com" 
                        className="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-full hover:bg-blue-100 transition-colors duration-200">
-                      <Mail className="mr-2" size={16} />
+                      <Suspense fallback={<div>Loading...</div>}>
+                        <Mail className="mr-2" size={16} />
+                      </Suspense>
                       Send Email
                     </a>
                   </div>
@@ -94,7 +102,9 @@ const Contact = () => {
                 <div className="text-center">
                   <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300"
                        style={{ backgroundColor: '#fbe0e0' }}>
-                    <Phone className="text-red-500" size={32} />
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <Phone className="text-red-500" size={32} />
+                    </Suspense>
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">Call Us</h3>
                   <p className="text-sm sm:text-base text-gray-600 font-mono">
@@ -103,7 +113,9 @@ const Contact = () => {
                   <div className="mt-4">
                     <a href="tel:+919152794553" 
                        className="inline-flex items-center px-4 py-2 text-sm font-medium text-red-600 bg-red-50 rounded-full hover:bg-red-100 transition-colors duration-200">
-                      <Phone className="mr-2" size={16} />
+                      <Suspense fallback={<div>Loading...</div>}>
+                        <Phone className="mr-2" size={16} />
+                      </Suspense>
                       Call Now
                     </a>
                   </div>
@@ -116,7 +128,9 @@ const Contact = () => {
                 <div className="text-center">
                   <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300"
                        style={{ backgroundColor: '#d7f9f8' }}>
-                    <MapPin className="text-teal-600" size={32} />
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <MapPin className="text-teal-600" size={32} />
+                    </Suspense>
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">Visit Us</h3>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
@@ -129,7 +143,9 @@ const Contact = () => {
                        target="_blank" 
                        rel="noopener noreferrer"
                        className="inline-flex items-center px-4 py-2 text-sm font-medium text-teal-600 bg-teal-50 rounded-full hover:bg-teal-100 transition-colors duration-200">
-                      <MapPin className="mr-2" size={16} />
+                      <Suspense fallback={<div>Loading...</div>}>
+                        <MapPin className="mr-2" size={16} />
+                      </Suspense>
                       Get Directions
                     </a>
                   </div>
@@ -156,14 +172,18 @@ const Contact = () => {
                 <a href="mailto:guddivishwakarma915@gmail.com" 
                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                    style={{ background: 'linear-gradient(135deg, #d6e6ff 0%, #e5d4ef 100%)' }}>
-                  <Mail className="mr-2" size={20} />
+                          <Suspense fallback={<div>Loading...</div>}>
+                            <Mail className="mr-2" size={20} />
+                          </Suspense>
                   <span className="text-gray-800">Send Email</span>
                 </a>
                 
                 <a href="tel:+919152794553" 
                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                    style={{ background: 'linear-gradient(135deg, #fbe0e0 0%, #fff0d4 100%)' }}>
-                  <Phone className="mr-2" size={20} />
+                          <Suspense fallback={<div>Loading...</div>}>
+                            <Phone className="mr-2" size={20} />
+                          </Suspense>
                   <span className="text-gray-800">Call Now</span>
                 </a>
                 
@@ -172,7 +192,9 @@ const Contact = () => {
                    rel="noopener noreferrer"
                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                    style={{ background: 'linear-gradient(135deg, #d7f9f8 0%, #ffffea 100%)' }}>
-                  <MessageCircle className="mr-2" size={20} />
+                          <Suspense fallback={<div>Loading...</div>}>
+                            <MessageCircle className="mr-2" size={20} />
+                          </Suspense>
                   <span className="text-gray-800">WhatsApp</span>
                 </a>
               </div>

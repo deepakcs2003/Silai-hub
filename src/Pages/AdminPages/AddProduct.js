@@ -1,22 +1,28 @@
-import React, { useEffect, useState } from "react";
-import {
-    availabilityStatuses,
-    color,
-    categories,
-    embellishmentsOptions,
-    fabricTypes,
-    patterns,
-    productTypes,
-    stitchingTypes,
-} from "../../Common/option";
-import { BlouseDetails } from "../../Components/AdminComponent/BlouseDetails";
-import { SuitDetails } from "../../Components/AdminComponent/SuitDetails";
-import SareeDetails from "../../Components/AdminComponent/SareeDetails";
-import LehengaDetails from "../../Components/AdminComponent/LehengaDetails";
+import React, { useEffect, useState, lazy, Suspense } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import summaryApi from "../../Common";
 import uploadMedia from "../../Common/uploadMedia";
-import { useNavigate, useParams } from "react-router-dom";
-import ImageUploader from "../../Components/AdminComponent/ImageUploader";
+
+// Lazy load option configurations
+const options = lazy(() => import("../../Common/option").then(module => ({
+    default: {
+        availabilityStatuses: module.availabilityStatuses,
+        color: module.color,
+        categories: module.categories,
+        embellishmentsOptions: module.embellishmentsOptions,
+        fabricTypes: module.fabricTypes,
+        patterns: module.patterns,
+        productTypes: module.productTypes,
+        stitchingTypes: module.stitchingTypes,
+    }
+})));
+
+// Lazy load components
+const BlouseDetails = lazy(() => import("../../Components/AdminComponent/BlouseDetails").then(module => ({ default: module.BlouseDetails })));
+const SuitDetails = lazy(() => import("../../Components/AdminComponent/SuitDetails").then(module => ({ default: module.SuitDetails })));
+const SareeDetails = lazy(() => import("../../Components/AdminComponent/SareeDetails"));
+const LehengaDetails = lazy(() => import("../../Components/AdminComponent/LehengaDetails"));
+const ImageUploader = lazy(() => import("../../Components/AdminComponent/ImageUploader"));
 
 const ProductForm = () => {
     const { id, type } = useParams();
@@ -282,33 +288,38 @@ const ProductForm = () => {
 
                 </select>
             </div>
-            {formData.category === 'Blouse' && (
-                <BlouseDetails
-                    formData={formData}
-                    setformdata={setFormData}
-                />
+                {formData.category === 'Blouse' && (
+                <Suspense fallback={<div>Loading Blouse details...</div>}>
+                    <BlouseDetails
+                        formData={formData}
+                        setformdata={setFormData}
+                    />
+                </Suspense>
             )}
             {formData.category === 'Suit' && (
-                <SuitDetails
-                    formData={formData}
-                    setformdata={setFormData}
-                />
+                <Suspense fallback={<div>Loading Suit details...</div>}>
+                    <SuitDetails
+                        formData={formData}
+                        setformdata={setFormData}
+                    />
+                </Suspense>
             )}
             {formData.category === 'Saree' && (
-                <SareeDetails
-                    formData={formData}
-                    setformdata={setFormData}
-                />
+                <Suspense fallback={<div>Loading Saree details...</div>}>
+                    <SareeDetails
+                        formData={formData}
+                        setformdata={setFormData}
+                    />
+                </Suspense>
             )}
-
             {(formData.category === 'Lehenga') && (
-                <LehengaDetails
-                    formData={formData}
-                    setformdata={setFormData}
-                />
-            )}
-
-            <div>
+                <Suspense fallback={<div>Loading Lehenga details...</div>}>
+                    <LehengaDetails
+                        formData={formData}
+                        setformdata={setFormData}
+                    />
+                </Suspense>
+            )}            <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                 <textarea
                     name="description"

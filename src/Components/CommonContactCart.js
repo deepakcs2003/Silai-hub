@@ -1,14 +1,15 @@
-import { Phone, Smartphone } from 'lucide-react'
-import React from 'react'
+import { Phone } from 'lucide-react/dist/esm/icons/phone';
+import { Smartphone } from 'lucide-react/dist/esm/icons/smartphone';
+import { memo } from 'react';
 
-const CommonContactCart = () => {
+const CommonContactCart = memo(() => {
     
     const phoneNumber = '+91 9152794553';
     const cleanedPhoneNumber = phoneNumber.replace(/\s+/g, '');
-  
+    
     const handleCall = () => {
       window.location.href = `tel:${cleanedPhoneNumber}`;
-    };
+    }
   return (
     <div>
          <div className="contact-section bg-white shadow-md rounded-lg p-4 max-w-md mx-auto my-4 flex flex-col items-center space-y-4">
@@ -26,21 +27,7 @@ const CommonContactCart = () => {
 
         <button
           onClick={handleCall}
-          className="
-          flex items-center justify-center 
-          w-full max-w-xs 
-          bg-blue-500 text-white 
-          py-3 px-6 
-          rounded-full 
-          hover:bg-blue-600 
-          transition duration-300 
-          ease-in-out 
-          transform hover:scale-105 
-          focus:outline-none 
-          focus:ring-2 
-          focus:ring-blue-300 
-          shadow-md
-        "
+          className="flex items-center justify-center w-full max-w-xs bg-blue-500 text-white py-3 px-6 rounded-full hover:bg-blue-600 transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300 shadow-md"
         >
           <Phone className="mr-2" size={20} />
           Call Now
@@ -48,6 +35,6 @@ const CommonContactCart = () => {
       </div>
     </div>
   )
-}
+});
 
-export default CommonContactCart
+export default CommonContactCart;

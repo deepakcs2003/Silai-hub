@@ -1,15 +1,13 @@
-import React from "react";
-import { 
-  Instagram, 
-  Facebook, 
-  Twitter, 
-  Mail, 
-  Phone, 
-  Scissors, 
-  MapPin 
-} from 'lucide-react';
+import { memo } from "react";
+import { Instagram } from 'lucide-react/dist/esm/icons/instagram';
+import { Facebook } from 'lucide-react/dist/esm/icons/facebook';
+import { Twitter } from 'lucide-react/dist/esm/icons/twitter';
+import { Mail } from 'lucide-react/dist/esm/icons/mail';
+import { Phone } from 'lucide-react/dist/esm/icons/phone';
+import { Scissors } from 'lucide-react/dist/esm/icons/scissors';
+import { MapPin } from 'lucide-react/dist/esm/icons/map-pin';
 
-export const Footer = () => {
+const Footer = memo(() => {
   return (
     <footer className="bg-gradient-to-br from-pink-50 to-purple-50 text-gray-800 py-12 px-4">
       <div className="container mx-auto">
@@ -114,4 +112,6 @@ export const Footer = () => {
       </div>
     </footer>
   );
-};
+});
+
+export default Footer;

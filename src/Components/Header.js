@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { Home, Shirt, Scissors, Contact, User, Shield, ShoppingCart } from 'lucide-react';
+import { useState, useEffect, memo, useMemo } from 'react';
+import { Home } from 'lucide-react/dist/esm/icons/home';
+import { Shirt } from 'lucide-react/dist/esm/icons/shirt';
+import { Scissors } from 'lucide-react/dist/esm/icons/scissors';
+import { Contact } from 'lucide-react/dist/esm/icons/contact';
+import { User } from 'lucide-react/dist/esm/icons/user';
+import { Shield } from 'lucide-react/dist/esm/icons/shield';
+import { ShoppingCart } from 'lucide-react/dist/esm/icons/shopping-cart';
 import logo from '../Assist/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 
-export const Header = () => {
+const Header = memo(function Header() {
+  const navItems = useMemo(() => [
+    { name: 'Home', icon: <Home />, link: '/' },
+    { name: 'About Us', icon: <User />, link: '/about' },
+    { name: 'Designs', icon: <Shirt />, link: '/gallery' },
+    { name: 'Order Now', icon: <Scissors />, link: '/order/null/custom' },
+    { name: 'Contact Us', icon: <Contact />, link: '/contact' },
+  ], []);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
   const navigate = useNavigate();
 
-  const navItems = [
-    { name: 'Home', icon: <Home />, link: '/' },
-    { name: 'About Us', icon: <User />, link: '/about' },
-    { name: 'Designs', icon: <Shirt />, link: '/gallery' },
-    { name: 'Order Now', icon: <Scissors />, link: '/order/null/custom' },
-    { name: 'Contact Us', icon: <Contact />, link: '/contact' },
-  ];
+
 
   useEffect(() => {
     // Check user and cart items
@@ -180,7 +187,7 @@ export const Header = () => {
               key={item.name}
               to={item.link}
               onClick={handleMenuItemClick}
-              className="block p-4 border-b border-gold flex items-center space-x-2 hover:bg-gold hover:text-deep-burgundy transition"
+              className="block p-4 border-b border-gold items-center space-x-2 hover:bg-gold hover:text-deep-burgundy transition"
               aria-label={item.name}
             >
               {item.icon}
@@ -192,7 +199,7 @@ export const Header = () => {
           <Link
             to="/cart"
             onClick={handleMenuItemClick}
-            className="block p-4 border-b border-gold flex items-center space-x-2 hover:bg-gold hover:text-deep-burgundy transition"
+            className="p-4 border-b border-gold flex items-center space-x-2 hover:bg-gold hover:text-deep-burgundy transition"
           >
             <ShoppingCart size={16} />
             <span>Cart {cartItemCount > 0 && `(${cartItemCount})`}</span>
@@ -203,7 +210,7 @@ export const Header = () => {
             <Link
               to="/admin"
               onClick={handleMenuItemClick}
-              className="block p-4 border-b border-gold flex items-center space-x-2 hover:bg-gold hover:text-deep-burgundy transition"
+              className="block p-4 border-b border-gold items-center space-x-2 hover:bg-gold hover:text-deep-burgundy transition"
             >
               <Shield size={16} />
               <span>Admin</span>
@@ -237,4 +244,7 @@ export const Header = () => {
       )}
     </nav>
   );
-};
+});
+
+export { Header };
+export default Header;

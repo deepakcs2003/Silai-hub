@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Shirt,
-  Ruler,
-  Image,
-  PaintBucket,
-  Link2,
-  FileText,
-  Upload,
-  CheckCircle2,
-  AlertCircle
-} from 'lucide-react';
+import dynamic from 'next/dynamic';
+
+const icons = {
+  Shirt: dynamic(() => import('lucide-react').then(mod => mod.Shirt)),
+  Ruler: dynamic(() => import('lucide-react').then(mod => mod.Ruler)),
+  Image: dynamic(() => import('lucide-react').then(mod => mod.Image)),
+  PaintBucket: dynamic(() => import('lucide-react').then(mod => mod.PaintBucket)),
+  Link2: dynamic(() => import('lucide-react').then(mod => mod.Link2)),
+  FileText: dynamic(() => import('lucide-react').then(mod => mod.FileText)),
+  Upload: dynamic(() => import('lucide-react').then(mod => mod.Upload)),
+  CheckCircle2: dynamic(() => import('lucide-react').then(mod => mod.CheckCircle2)),
+  AlertCircle: dynamic(() => import('lucide-react').then(mod => mod.AlertCircle))
+};
 
 // Cloudinary Upload Function remains the same as in the original component
 const uploadImage = async (image) => {
@@ -88,12 +90,12 @@ const ProductType = ({ orderType, setOrderData, orderData }) => {
   return (
       <div className=" p-8 ">
         <div className="flex items-center justify-center mb-8">
-          <Shirt className="h-10 w-10 mr-4 text-blue-600" />
+          {React.createElement(icons.Shirt, { className: "h-10 w-10 mr-4 text-blue-600" })}
           <h2 className="text-3xl font-bold text-gray-800">Order Customization</h2>
         </div>
         <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
           <div className="flex items-center">
-            <AlertCircle className="w-5 h-5 text-blue-600 mr-3" />
+            {React.createElement(icons.AlertCircle, { className: "w-5 w-5 text-blue-600 mr-3" })}
             <p className="text-blue-800 font-medium">
               Please complete all required fields to proceed with your order
             </p>
@@ -103,7 +105,7 @@ const ProductType = ({ orderType, setOrderData, orderData }) => {
         {localOrderType === 'readymade' && (
           <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-md mb-6">
             <div className="flex items-center">
-              <CheckCircle2 className="h-6 w-6 mr-3 text-blue-600" />
+              {React.createElement(icons.CheckCircle2, { className: "h-6 w-6 mr-3 text-blue-600" })}
               <p className="text-blue-700 font-medium">Select from our curated ready-made collection</p>
             </div>
           </div>
@@ -118,7 +120,7 @@ const ProductType = ({ orderType, setOrderData, orderData }) => {
                 htmlFor="clothPic"
                 className="flex items-center text-sm font-medium text-gray-700 mb-3"
               >
-                <Image className="h-5 w-5 mr-2 text-blue-600" />
+                {React.createElement(icons.Image, { className: "h-5 w-5 mr-2 text-blue-600" })}
                 Cloth Picture You Want to Tailor
               </label>
               <div className="relative">
@@ -139,7 +141,7 @@ const ProductType = ({ orderType, setOrderData, orderData }) => {
                 />
                 {isUploading && (
                   <div className="absolute inset-0 bg-white bg-opacity-70 flex items-center justify-center">
-                    <Upload className="h-8 w-8 animate-bounce text-blue-600" />
+                    {React.createElement(icons.Upload, { className: "h-8 w-8 animate-bounce text-blue-600" })}
                   </div>
                 )}
               </div>
@@ -163,7 +165,7 @@ const ProductType = ({ orderType, setOrderData, orderData }) => {
                 htmlFor="color"
                 className="flex items-center text-sm font-medium text-gray-700 mb-3"
               >
-                <PaintBucket className="h-5 w-5 mr-2 text-blue-600" />
+                {React.createElement(icons.PaintBucket, { className: "h-5 w-5 mr-2 text-blue-600" })}
                 Color of your cloth
               </label>
               <input
@@ -188,7 +190,7 @@ const ProductType = ({ orderType, setOrderData, orderData }) => {
                 htmlFor="designDetails"
                 className="flex items-center text-sm font-medium text-gray-700 mb-3"
               >
-                <FileText className="h-5 w-5 mr-2 text-blue-600" />
+                {React.createElement(icons.FileText, { className: "h-5 w-5 mr-2 text-blue-600" })}
                 Design Details as per your requirement
               </label>
               <textarea
@@ -253,7 +255,7 @@ const ProductType = ({ orderType, setOrderData, orderData }) => {
                 htmlFor="link"
                 className="flex items-center text-sm font-medium text-gray-700 mb-3"
               >
-                <Link2 className="h-5 w-5 mr-2 text-blue-600" />
+                {React.createElement(icons.Link2, { className: "h-5 w-5 mr-2 text-blue-600" })}
                 Design Reference Link(like Pinterest,Youtube,Internet etc.)
               </label>
               <input
@@ -275,7 +277,7 @@ const ProductType = ({ orderType, setOrderData, orderData }) => {
             htmlFor="customerDetails"
             className="flex items-center text-sm font-medium text-gray-700 mb-3"
           >
-            <AlertCircle className="h-5 w-5 mr-2 text-blue-600" />
+            {React.createElement(icons.AlertCircle, { className: "h-5 w-5 mr-2 text-blue-600" })}
             Additional Customer Details
           </label>
           <textarea

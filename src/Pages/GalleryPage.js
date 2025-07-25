@@ -11,7 +11,9 @@ import {
   color
 } from '../Common/option';
 import Card from '../Components/Card';
-import { X, Filter } from 'lucide-react';
+import { Suspense, lazy } from 'react';
+const X = lazy(() => import('lucide-react').then(mod => ({ default: mod.X })));
+const Filter = lazy(() => import('lucide-react').then(mod => ({ default: mod.Filter })));
 import { AppContext } from '../App';
 
 const GalleryPage = () => {
@@ -158,7 +160,9 @@ const GalleryPage = () => {
             onClick={() => setIsFilterOpen(false)} 
             className="lg:hidden absolute top-4 right-4 text-gray-600 hover:text-red-500"
           >
-            <X size={24} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <X size={24} />
+            </Suspense>
           </button>
 
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Filter Products</h2>
@@ -243,7 +247,9 @@ const GalleryPage = () => {
           onClick={() => setIsFilterOpen(true)}
           className="fixed bottom-6 right-6 z-40 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition lg:hidden"
         >
-          <Filter size={24} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Filter size={24} />
+          </Suspense>
         </button>
 
         {/* Product Grid */}

@@ -1,20 +1,32 @@
-import { Palette, Shirt, Scissors, Diamond, Info, Brush, Tag, FileText, Box } from 'lucide-react';
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
+
+const icons = {
+    Palette: dynamic(() => import('lucide-react').then(mod => mod.Palette)),
+    Shirt: dynamic(() => import('lucide-react').then(mod => mod.Shirt)),
+    Scissors: dynamic(() => import('lucide-react').then(mod => mod.Scissors)),
+    Diamond: dynamic(() => import('lucide-react').then(mod => mod.Diamond)),
+    Info: dynamic(() => import('lucide-react').then(mod => mod.Info)),
+    Brush: dynamic(() => import('lucide-react').then(mod => mod.Brush)),
+    Tag: dynamic(() => import('lucide-react').then(mod => mod.Tag)),
+    FileText: dynamic(() => import('lucide-react').then(mod => mod.FileText)),
+    Box: dynamic(() => import('lucide-react').then(mod => mod.Box))
+};
 
 const CategoryIcon = {
-    'Blouse': Shirt,
-    'Suit': Scissors,
-    'Lehenga': Diamond,
-    'Saree': Box,
+    'Blouse': icons.Shirt,
+    'Suit': icons.Scissors,
+    'Lehenga': icons.Diamond,
+    'Saree': icons.Box,
 };
 
 const TypeDetails = ({ product }) => {
     const [showMore, setShowMore] = useState(false);
 
-    const renderDetailsRow = (label, value, IconComponent, colorClass) => (
+    const renderDetailsRow = (label, value, iconName, colorClass) => (
         <div className={`flex justify-between items-center py-3 border-b ${colorClass}`}>
             <div className="flex items-center gap-2">
-                <IconComponent className="w-6 h-6 text-black sm:text-black" /> {/* Changed to text-black */}
+                {React.createElement(icons[iconName], { className: "w-6 h-6 text-black sm:text-black" })}
                 <span className="font-medium text-gray-700 text-sm sm:text-base">{label}</span>
             </div>
             <span className="text-gray-900 font-semibold text-sm sm:text-base">{value}</span>
@@ -33,15 +45,15 @@ const TypeDetails = ({ product }) => {
                             <h2 className="text-xl sm:text-2xl font-bold text-black">Blouse Details</h2>
                         </div>
                         <div className="bg-red-50 p-4">
-                            {renderDetailsRow('Sleeve Type', product.blouseDetails?.sleeveType || 'N/A', Brush, 'border-pink-300')}
-                            {renderDetailsRow('Back Design', product.blouseDetails?.blouseBackDesign || 'N/A', Tag, 'border-pink-300')}
+                            {renderDetailsRow('Sleeve Type', product.blouseDetails?.sleeveType || 'N/A', 'Brush', 'border-pink-300')}
+                            {renderDetailsRow('Back Design', product.blouseDetails?.blouseBackDesign || 'N/A', 'Tag', 'border-pink-300')}
                             {showMore && (
                                 <>
-                                    {renderDetailsRow('Neckline Style', product.blouseDetails?.necklineStyle || 'N/A', Palette, 'border-pink-300')}
-                                    {renderDetailsRow('Fit Type', product.blouseDetails?.fitType || 'N/A', Scissors, 'border-pink-300')}
-                                    {renderDetailsRow('Embellishments', product.blouseDetails?.embellishments || 'None', Tag, 'border-pink-300')}
-                                    {renderDetailsRow('Padding', product.blouseDetails?.padding ? 'Yes' : 'No', FileText, 'border-pink-300')}
-                                    {renderDetailsRow('Lining', product.blouseDetails?.lining ? 'Yes' : 'No', FileText, 'border-pink-300')}
+                                    {renderDetailsRow('Neckline Style', product.blouseDetails?.necklineStyle || 'N/A', 'Palette', 'border-pink-300')}
+                                    {renderDetailsRow('Fit Type', product.blouseDetails?.fitType || 'N/A', 'Scissors', 'border-pink-300')}
+                                    {renderDetailsRow('Embellishments', product.blouseDetails?.embellishments || 'None', 'Tag', 'border-pink-300')}
+                                    {renderDetailsRow('Padding', product.blouseDetails?.padding ? 'Yes' : 'No', 'FileText', 'border-pink-300')}
+                                    {renderDetailsRow('Lining', product.blouseDetails?.lining ? 'Yes' : 'No', 'FileText', 'border-pink-300')}
                                 </>
                             )}
                         </div>
@@ -62,12 +74,12 @@ const TypeDetails = ({ product }) => {
                             <h2 className="text-xl sm:text-2xl font-bold text-black">Suit Details</h2>
                         </div>
                         <div className="bg-red-50 p-4">
-                            {renderDetailsRow('Sleeve Type', product.suitDetails?.sleeveType || 'N/A', Brush, 'border-blue-300')}
-                            {renderDetailsRow('Fit Type', product.suitDetails?.fitType || 'N/A', Scissors, 'border-blue-300')}
-                            {renderDetailsRow('Style', product.suitDetails?.style || 'N/A', Palette, 'border-blue-300')}
+                            {renderDetailsRow('Sleeve Type', product.suitDetails?.sleeveType || 'N/A', 'Brush', 'border-blue-300')}
+                            {renderDetailsRow('Fit Type', product.suitDetails?.fitType || 'N/A', 'Scissors', 'border-blue-300')}
+                            {renderDetailsRow('Style', product.suitDetails?.style || 'N/A', 'Palette', 'border-blue-300')}
                             {showMore && (
                                 <>
-                                    {renderDetailsRow('Fabric Type', product.suitDetails?.fabricType || 'N/A', FileText, 'border-blue-300')}
+                                    {renderDetailsRow('Fabric Type', product.suitDetails?.fabricType || 'N/A', 'FileText', 'border-blue-300')}
                                 </>
                             )}
                         </div>
@@ -88,13 +100,13 @@ const TypeDetails = ({ product }) => {
                             <h2 className="text-xl sm:text-2xl font-bold text-black">Lehenga Details</h2>
                         </div>
                         <div className="bg-red-50 p-4">
-                            {renderDetailsRow('Lehenga Type', product.lehengaDetails?.lehengaType || 'N/A', Shirt, 'border-purple-300')}
-                            {renderDetailsRow('Waist Size', product.lehengaDetails?.lehengaWaist || 'N/A', Tag, 'border-purple-300')}
+                            {renderDetailsRow('Lehenga Type', product.lehengaDetails?.lehengaType || 'N/A', 'Shirt', 'border-purple-300')}
+                            {renderDetailsRow('Waist Size', product.lehengaDetails?.lehengaWaist || 'N/A', 'Tag', 'border-purple-300')}
                             {showMore && (
                                 <>
-                                    {renderDetailsRow('Dupatta Included', product.lehengaDetails?.lehengaDupattaIncluded ? 'Yes' : 'No', Palette, 'border-purple-300')}
-                                    {renderDetailsRow('Fabric', product.lehengaDetails?.lehengaFabric || 'N/A', FileText, 'border-purple-300')}
-                                    {renderDetailsRow('Embroidery', product.lehengaDetails?.embroidery || 'N/A', Tag, 'border-purple-300')}
+                                    {renderDetailsRow('Dupatta Included', product.lehengaDetails?.lehengaDupattaIncluded ? 'Yes' : 'No', 'Palette', 'border-purple-300')}
+                                    {renderDetailsRow('Fabric', product.lehengaDetails?.lehengaFabric || 'N/A', 'FileText', 'border-purple-300')}
+                                    {renderDetailsRow('Embroidery', product.lehengaDetails?.embroidery || 'N/A', 'Tag', 'border-purple-300')}
                                 </>
                             )}
                         </div>
@@ -115,15 +127,15 @@ const TypeDetails = ({ product }) => {
                             <h2 className="text-xl sm:text-2xl font-bold text-black">Saree Details</h2>
                         </div>
                         <div className="bg-red-50 p-4">
-                            {renderDetailsRow('Length', `${product.sareeDetails?.sareeLength || 'N/A'} meters`, Brush, 'border-green-300')}
-                            {renderDetailsRow('Pleated', product.sareeDetails?.pleated ? 'Yes' : 'No', Scissors, 'border-green-300')}
-                            {renderDetailsRow('Embroidery Details', product.sareeDetails?.embroideryDetails || 'N/A', FileText, 'border-green-300')}
+                            {renderDetailsRow('Length', `${product.sareeDetails?.sareeLength || 'N/A'} meters`, 'Brush', 'border-green-300')}
+                            {renderDetailsRow('Pleated', product.sareeDetails?.pleated ? 'Yes' : 'No', 'Scissors', 'border-green-300')}
+                            {renderDetailsRow('Embroidery Details', product.sareeDetails?.embroideryDetails || 'N/A', 'FileText', 'border-green-300')}
                             {showMore && (
                                 <>
-                                    {renderDetailsRow('Fabric', product.sareeDetails?.sareeFabric || 'N/A', Palette, 'border-green-300')}
-                                    {renderDetailsRow('Blouse Type', product.sareeDetails?.blouseType || 'N/A', Tag, 'border-green-300')}
-                                    {renderDetailsRow('Border Style', product.sareeDetails?.borderStyle || 'N/A', Tag, 'border-green-300')}
-                                    {renderDetailsRow('Drape Style', product.sareeDetails?.drapeStyle || 'N/A', FileText, 'border-green-300')}
+                                    {renderDetailsRow('Fabric', product.sareeDetails?.sareeFabric || 'N/A', 'Palette', 'border-green-300')}
+                                    {renderDetailsRow('Blouse Type', product.sareeDetails?.blouseType || 'N/A', 'Tag', 'border-green-300')}
+                                    {renderDetailsRow('Border Style', product.sareeDetails?.borderStyle || 'N/A', 'Tag', 'border-green-300')}
+                                    {renderDetailsRow('Drape Style', product.sareeDetails?.drapeStyle || 'N/A', 'FileText', 'border-green-300')}
                                 </>
                             )}
                         </div>
@@ -139,7 +151,7 @@ const TypeDetails = ({ product }) => {
             default:
                 return (
                     <div className="text-center py-6 text-gray-500">
-                        <Info className="mx-auto mb-4 w-12 h-12 text-gray-400" />
+                        {React.createElement(icons.Info, { className: "mx-auto mb-4 w-12 h-12 text-gray-400" })}
                         <p className="text-xl">No details available for this category</p>
                     </div>
                 );

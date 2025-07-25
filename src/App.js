@@ -1,11 +1,11 @@
 import './App.css';
-import { createContext, useState, useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
-import { Header } from './Components/Header';
-import { Footer } from './Components/Footer';
+import { createContext, useState, useEffect, lazy, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import summaryApi from './Common';
-import axios from 'axios';
+
+const ToastContainer = lazy(() => import('react-toastify').then(mod => ({ default: mod.ToastContainer })));
+const Header = lazy(() => import('./Components/Header').then(mod => ({ default: mod.Header })));
+const Footer = lazy(() => import('./Components/Footer').then(mod => ({ default: mod.Footer })));
 
 export const AppContext = createContext({
   cartData: null,
@@ -194,12 +194,18 @@ function App() {
       }}
     >
       <div className="flex flex-col min-h-screen">
-        <ToastContainer />
-        <Header />
+        <Suspense fallback={<div>Loading notifications...</div>}>
+          <ToastContainer />
+        </Suspense>
+        <Suspense fallback={<div className="h-16 bg-gray-100">Loading header...</div>}>
+          <Header />
+        </Suspense>
         <main className="flex-grow overflow-hidden">
           <Outlet />
         </main>
-        <Footer />
+        <Suspense fallback={<div className="h-12 bg-gray-100">Loading footer...</div>}>
+          <Footer />
+        </Suspense>
       </div>
     </AppContext.Provider>
   );

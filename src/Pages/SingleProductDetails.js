@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import summaryApi from '../Common';
 import TypeDetails from '../Components/CommonComponents/TypeDetails';
-import { Heart, Phone, Share2, Smartphone } from 'lucide-react';
+import { Suspense, lazy } from 'react';
+const Heart = lazy(() => import('lucide-react').then(mod => ({ default: mod.Heart })));
+const Phone = lazy(() => import('lucide-react').then(mod => ({ default: mod.Phone })));
+const Share2 = lazy(() => import('lucide-react').then(mod => ({ default: mod.Share2 })));
+const Smartphone = lazy(() => import('lucide-react').then(mod => ({ default: mod.Smartphone })));
 import MainDetails from '../Components/CommonComponents/MainDetails';
 import PriceDetails from '../Components/CommonComponents/PriceDetails';
 import PopupModal from '../Components/PopupModal';
@@ -137,7 +141,9 @@ const SingleProductDetails = () => {
               : 'bg-blue-500 text-white hover:bg-blue-600'
               }`}
           >
-            <Heart className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Heart className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+            </Suspense>
             {likes} Likes
           </button>
 
@@ -145,7 +151,9 @@ const SingleProductDetails = () => {
             onClick={handleShare}
             className="flex-1 ml-2 sm:ml-4 flex items-center justify-center py-2 sm:py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm sm:text-base"
           >
-            <Share2 className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Share2 className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+            </Suspense>
             Share
           </button>
         </div>
